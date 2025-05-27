@@ -44,7 +44,7 @@ const SignIn = () => {
     const payload = { ...getValues() };
     dispatch(AuthActions.logIn({ ...payload }));
     navigate('/dashboard');
-    
+
   };
 
   useEffect(() => {
@@ -55,12 +55,14 @@ const SignIn = () => {
 
   return (
     <Box className="flex flex-row justify-around items-center w-full p-4 max-sm:p-0! overflow-hidden">
-     <Box className="flex w-[50%] max-sm:w-[100%]! sm:w-[100%]! h-full max-sm:m-0! rounded-xl max-sm:rounded-none!">
+     <Box className="flex w-[50%] max-sm:w-[100%]! sm:w-[100%]! h-full max-sm:m-0! rounded-xl max-sm:rounded-none! bg-[#11a4bc]">
      <Box className="flex flex-col items-center justify-center w-full h-full p-4">
-        <img src={LogoAi} alt={LogoAi} className='py-[40px]'/>
+      <Box className="text-left">
+        <img src={LogoAi} alt={LogoAi} className='py-[40px] w-[50px]'/>
+        </Box>
         <Box>
-        <Typography className='text-[25px] text-[#FFFFFF] font-[Figtree]'>Welcome to ActiveJobs </Typography>
-        <Typography className='text-[#1E1E1E] font-[Figtree]'>Ai-based job provider for your bright future.</Typography>
+        <Typography className='text-[25px] text-[#FFFFFF] font-[Albert_sans]'>Welcome to ActiveJobs </Typography>
+        <Typography className='text-[#1E1E1E] font-[mulish]'>Ai-based job provider for your bright future.</Typography>
         <form onSubmit={handleSubmit(onSubmit)} className='pt-[40px]'>
           <Tooltip title={errorMessage} disableInteractive>
             <Box>
@@ -82,7 +84,7 @@ const SignIn = () => {
             control={control as unknown as Control<FieldValues>}
             variant="standard"
             placeholder="Enter Password"
-            required  
+            required
             type={showPassword ? 'text' : 'password'}
             InputProps={{
               endAdornment: (
@@ -98,7 +100,7 @@ const SignIn = () => {
             }}
           />
           </Box>
-          <Box className='flex flex-row items-center justify-between align-center mt-4'>
+          <Box className='flex items-center justify-between align-center mt-4'>
             <Button
               label="Login"
               variant="contained"
@@ -107,12 +109,12 @@ const SignIn = () => {
               disabled={isLoading}
               className='my-[30px] text-[#404040] bg-[#ffffff]'
             />
+            <Typography className='text-[#404040] font-[Albert_Sans]'> <Link to="/forgot-password">Forgot Password?</Link></Typography>
             </Box>
-        </form> 
+        </form>
         </Box>
         <Box className='py-[20px] pb-[40px] mt-10 flex justify-between'>
-          <Typography className='text-[#404040] font-[Albert_Sans]'> <Link to="/forgot-password">Forgot Password?</Link></Typography>
-        <Typography className='text-[#FFFFFF] font-[Figtree]'>Don&apos;t have account?<span className='text-[#000000]'><Link to={'/register'}>SignUp</Link></span></Typography>
+        <Typography className='text-[#FFFFFF] font-[mulish]!'>Don&apos;t have account? <span className='text-[#000000]'><Link to={'/register'}>SignUp</Link></span></Typography>
         </Box>
         </Box>
      </Box>

@@ -10,5 +10,6 @@ import BuildingIcon from './buildingIcon.svg';
 import AppIcon from './applicationIcon.svg';
 import ApplicationIcon from './applicationIcons.svg';
 import GoogleIcon from './googleIcon.svg';
+import ResumeIcon from './resumeIcon.svg';
 
-export { DashboardIcon, LogOut, LogoAi, LogIn, JobIcon, CompaniesIcon, ApplicationIcon, SettingIcon, SeekersIcon, BuildingIcon, AppIcon, GoogleIcon };
+export { DashboardIcon, LogOut, LogoAi, LogIn, JobIcon, CompaniesIcon, ApplicationIcon, SettingIcon, SeekersIcon, BuildingIcon, AppIcon, GoogleIcon, ResumeIcon };

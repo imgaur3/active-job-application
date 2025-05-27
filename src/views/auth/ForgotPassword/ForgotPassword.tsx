@@ -11,7 +11,7 @@ import { Button } from "../../../components";
 import { Link } from "react-router";
 
 const ForgotPassword = () => {
- 
+
     const forgotPasswordSchema = yup.object().shape({
       email: yup
         .string()
@@ -23,7 +23,7 @@ const ForgotPassword = () => {
         ),
       password: yup.string().max(30).required(formFieldConstants.requiredConstant),
     });
-    
+
       const auth = useSelector(AuthSelectors.auth);
       const { isLoading, errorMessage } = auth;
       const { handleSubmit, getValues, control } = useForm({
@@ -65,7 +65,7 @@ const ForgotPassword = () => {
               disabled={isLoading}
               className='my-[30px] text-[#404040] bg-[#ffffff]'
             />
-            <Typography className='text-[#FFFFFF] font-[Figtree]'> <Link to="/forgot-password">Forgot Password?</Link></Typography>
+            <Typography className='text-[#FFFFFF] font-[Albert_Sans]'> <Link to="/forgot-password">Forgot Password?</Link></Typography>
             </Box>
         </form>
         <Typography><Link to={'/sign-in'}>Back to Signin</Link></Typography>

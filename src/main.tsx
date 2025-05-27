@@ -5,11 +5,11 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore } from 'redux-persist';
 import { StyledEngineProvider } from '@mui/material';
 
-import App from './App.tsx';
-import { configStore } from './redux-modules/store/index.ts';
 import { ThemeContextProvider } from './theme';
 
 import './index.css';
+import { configStore } from './redux-modules/store';
+import App from './App';
 
 const { store } = configStore();
 const persistor = persistStore(store);

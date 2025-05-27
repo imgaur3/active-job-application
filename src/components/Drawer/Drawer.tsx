@@ -15,8 +15,7 @@ import { GlobalSelectors } from '../../redux-modules/global';
 import { toggleSidebar } from '../../redux-modules/global/Actions';
 import DrawerLinks from './DrawerLinks';
 
-
-const drawerWidth = 240;
+const drawerWidth = 300;
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: drawerWidth,
@@ -103,11 +102,11 @@ const Drawer = () => {
       <CssBaseline />
       <StyledDrawer variant="permanent" open={open} onClose={closeDrawer} sx={{ '& .MuiDrawer-paper': { border: 'none' } }}>
         <Box className="flex flex-col justify-around items-center">
-          <Box className="h-[10vh]!">
+          <Box className="h-[15vh]!">
             <DrawerHeader>
               <IconButton onClick={hadleToggleDrawer} sx={{ marginTop: '20px', ":hover": { cursor: 'pointer' } }}>
                 {open ?
-                <Box className="flex items-center ">
+                <Box className="flex items-center">
                 <img src={LogoAi} alt={LogoAi} />
                 <Typography sx={{ fontFamily: "'mulish', 'sans serif'", fontSize: 18, marginLeft: 1, }}> ActiveJobs </Typography>
                 </Box>
@@ -115,13 +114,14 @@ const Drawer = () => {
               </IconButton>
             </DrawerHeader>
           </Box>
-          <Box className="h-[80vh]!">
+          <Box className="h-[70vh]!">
             <List>
               <DrawerLinks />
             </List>
           </Box>
-          <Box className="h-[10vh]!">
+          <Box className="h-[15vh]! flex justify-around items-center">
             <img src={LogOut} alt={LogOut} onClick={handleLogout} className='w-[35px] cursor-pointer' />
+            <Typography className='p-2'  sx={{fontFamily: '"Albert Sans", sans-serif'}}> Logout </Typography>
           </Box>
         </Box>
       </StyledDrawer>

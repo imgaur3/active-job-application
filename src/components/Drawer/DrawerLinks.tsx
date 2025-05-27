@@ -57,11 +57,11 @@ export const DrawerLinks = () => {
               : JobIcon
           }
         />
-      ), 
+      ),
       path: '/job-seekers',
     },
      {
-      text: 'Companies',  
+      text: 'Companies',
       id: useId(),
       icon: (
         <img
@@ -75,7 +75,7 @@ export const DrawerLinks = () => {
       path: '/companies',
     },
      {
-      text: 'Applications',  
+      text: 'Applications',
       id: useId(),
       icon: (
         <img
@@ -89,7 +89,7 @@ export const DrawerLinks = () => {
       path: '/applications',
     },
      {
-      text: 'Register',  
+      text: 'Register',
       id: useId(),
       icon: (
         <img
@@ -103,7 +103,7 @@ export const DrawerLinks = () => {
       path: '/register-data',
     },
      {
-      text: 'Settings',  
+      text: 'Settings',
       id: useId(),
       icon: (
         <img
@@ -139,7 +139,7 @@ export const DrawerLinks = () => {
               mr: open ? 3 : 'auto',
               marginLeft: '0',
               '& .MuiListItemIcon-root':{
-                color: '#FFFFFF',
+                color: '#119EB5',
               },
             }}
           >
@@ -157,7 +157,6 @@ export const DrawerLinks = () => {
   );
   return (
     <List sx={{
-      marginTop: '60px',
       '& .MuiListItemText-root': {
         color: '#505050',
       }
