@@ -11,5 +11,11 @@ import AppIcon from './applicationIcon.svg';
 import ApplicationIcon from './applicationIcons.svg';
 import GoogleIcon from './googleIcon.svg';
 import ResumeIcon from './resumeIcon.svg';
+import ActiveCompany from './acitiveCompaniesIcon.svg';
+import ActiveApplication from './activeApplicationIcon.svg';
+import ActiveDashboard from './activeDashboardIcon.svg';
+import ActiveSeeker from './activeSeekerIcon.svg';
+import ActiveSetting from './activeSettingIcon.svg';
+import ActiveRegister from './activeRegisterIcon.svg';
 
-export { DashboardIcon, LogOut, LogoAi, LogIn, JobIcon, CompaniesIcon, ApplicationIcon, SettingIcon, SeekersIcon, BuildingIcon, AppIcon, GoogleIcon, ResumeIcon };
+export { DashboardIcon, LogOut, LogoAi, LogIn, JobIcon, CompaniesIcon, ApplicationIcon, SettingIcon, SeekersIcon, BuildingIcon, AppIcon, GoogleIcon, ResumeIcon, ActiveApplication, ActiveCompany, ActiveDashboard, ActiveSeeker, ActiveSetting, ActiveRegister };

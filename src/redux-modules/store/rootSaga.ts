@@ -2,9 +2,10 @@ import { all, call, spawn } from 'redux-saga/effects';
 
 import { AuthSaga } from '../auth';
 import { errorMessageHandler } from '../../common/utils/helpers';
+import DialogSagas from '../dialog/Sagas';
 
 export default function* rootSaga() {
-  const sagas = [AuthSaga];
+  const sagas = [AuthSaga, DialogSagas];
   yield all(
     sagas.map((saga) =>
       spawn(function* () {

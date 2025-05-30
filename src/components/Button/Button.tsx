@@ -13,6 +13,8 @@ type ButtonProps = {
   isLoading?: boolean;
   children?: ReactNode;
   disabled?: boolean;
+  endIcon?: ReactNode;
+  sx?: object;
 };
 
 const MButton = ({
@@ -24,6 +26,8 @@ const MButton = ({
   isLoading,
   children,
   disabled,
+  endIcon,
+  sx,
   ...rest
 }: ButtonProps) => {
   return (
@@ -36,11 +40,13 @@ const MButton = ({
         type={type}
         onClick={onClick}
         disabled={disabled}
+        sx={sx}
         {...rest}
       >
         {isLoading && <CircularProgress color="inherit" size={20} />}
         {label}
         {children}
+        {endIcon && <span className="ml-2">{endIcon}</span>}
       </Button>
     </>
   );

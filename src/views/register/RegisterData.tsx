@@ -5,6 +5,7 @@ import { ResumeIcon } from '../../assets/svg';
 import { BackDrop } from '../../assets/images';
 import Users from './components/users/Users';
 import Companies from './components/Companies/Companies';
+import { fontFamily } from '../../../src/common/utils/constants';
 
 const Register = () => {
   return (
@@ -17,7 +18,7 @@ const Register = () => {
       >
         <Box className="relative">
           <Typography
-            sx={{ fontFamily: "'Comfortaa', sans-serif" }}
+            sx={{ fontFamily: fontFamily.primary }}
             className="text-2xl! ml-10! text-white"
           >
             Register Now
@@ -31,7 +32,7 @@ const Register = () => {
         <img src={ResumeIcon} alt="Resume" className="w-[238px]" />
       </Box>
 
-      <Box className="bg-[#F2F2F2] mt-8 rounded-3xl">
+      <Box className="bg-[#d1e8ec] mt-4 rounded-3xl">
         <Tabs
           tabs={[
             { label: 'Companies', href: '/companies', component: <Companies /> },

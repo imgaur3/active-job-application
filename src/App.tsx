@@ -4,8 +4,8 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 
 import RouteWrapper from './Routes';
 import { AuthWrapper } from './components';
-import './App.css';
 import { useThemeContext } from './theme';
+import './App.css';
 
 function App() {
   const { theme } = useThemeContext();

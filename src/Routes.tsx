@@ -14,10 +14,11 @@ import { ApplicationsRoute } from './views/applications/Routes';
 import { SettingsRoute } from './views/settings/Routes';
 import { RegisterDataRoute } from './views/register/Routes';
 import { UsersRoute } from './views/register/components/users/Routes';
+import { CompaniesRoute } from './views/register/components/Companies/Routes';
 
 const App = () => {
   const PublicRoutes: IRoute[] = [SignInRoute, NotFoundRoute, ForgotPasswordRoute, RegisterRoute];
-  const ProtectedRoutes: IRoute[] = [HomeRoute, JobSeekerRoute, ApplicationsRoute, SettingsRoute, RegisterDataRoute, UsersRoute];
+  const ProtectedRoutes: IRoute[] = [HomeRoute, JobSeekerRoute, ApplicationsRoute, SettingsRoute, RegisterDataRoute, UsersRoute, CompaniesRoute];
 
   const auth = useSelector(AuthSelectors.auth);
   const loggedIn = get(auth, 'loggedIn');

@@ -109,7 +109,7 @@ const SignIn = () => {
               disabled={isLoading}
               className='my-[30px] text-[#404040] bg-[#ffffff]'
             />
-            <Typography className='text-[#404040] font-[Albert_Sans]'> <Link to="/forgot-password">Forgot Password?</Link></Typography>
+            <Typography className='text-[#FFFFFF] font-[Albert_Sans]'> <Link to="/forgot-password">Forgot Password?</Link></Typography>
             </Box>
         </form>
         </Box>

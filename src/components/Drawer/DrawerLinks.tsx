@@ -10,7 +10,8 @@ import {
 } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { GlobalSelectors } from '../../redux-modules/global';
-import { DashboardIcon, JobIcon, CompaniesIcon, ApplicationIcon, SettingIcon } from '../../assets/svg';
+import { ActiveDashboard, ActiveSeeker, ActiveApplication, ActiveSetting, ActiveRegister } from '../../assets/svg';
+import { fontFamily } from '../../../src/common/utils/constants';
 
 
 type MenuItem = {
@@ -27,8 +28,8 @@ export const DrawerLinks = () => {
 
   const getColor = (curr: string) => {
     if (location.pathname.includes(curr)) {
-      return '#1B98F5';
-    } else return '#6A6A6A';
+      return 'red';
+    } else return 'green';
   };
 
   const pages: MenuItem[] = [
@@ -39,8 +40,8 @@ export const DrawerLinks = () => {
         <img
           src={
             location.pathname.includes('dashboard')
-              ? DashboardIcon
-              : DashboardIcon
+              ? ActiveDashboard
+              : ActiveDashboard
           }
         />
       ),
@@ -53,64 +54,50 @@ export const DrawerLinks = () => {
         <img
           src={
             location.pathname.includes('job-seekers')
-              ? JobIcon
-              : JobIcon
+              ? ActiveSeeker
+              : ActiveSeeker
           }
         />
       ),
       path: '/job-seekers',
     },
-     {
-      text: 'Companies',
-      id: useId(),
-      icon: (
-        <img
-          src={
-            location.pathname.includes('companies')
-              ? CompaniesIcon
-              : CompaniesIcon
-          }
-        />
-      ),
-      path: '/companies',
-    },
-     {
+    {
       text: 'Applications',
       id: useId(),
       icon: (
         <img
           src={
             location.pathname.includes('applications')
-              ? ApplicationIcon
-              : ApplicationIcon
+              ? ActiveApplication
+              : ActiveApplication
           }
         />
       ),
       path: '/applications',
     },
-     {
+    {
       text: 'Register',
       id: useId(),
       icon: (
         <img
           src={
             location.pathname.includes('register-data')
-              ? ApplicationIcon
-              : ApplicationIcon
+              ? ActiveRegister
+              : ActiveRegister
           }
         />
       ),
       path: '/register-data',
     },
-     {
+    {
       text: 'Settings',
       id: useId(),
       icon: (
         <img
           src={
             location.pathname.includes('settings')
-              ? SettingIcon
-              : SettingIcon
+              ? ActiveSetting
+              : ActiveSetting
           }
         />
       ),
@@ -121,7 +108,10 @@ export const DrawerLinks = () => {
 
   const { open } = isOpen;
   const MenuItem = ({ path, id, text, icon, onClick }: MenuItem) => (
-    <ListItem key={id} disablePadding sx={{ display: 'block' }}>
+    <ListItem
+      key={id}
+      disablePadding
+      sx={{ display: 'block' }}>
       <Link
         style={{ color: getColor(path) }}
         to={path}
@@ -130,6 +120,13 @@ export const DrawerLinks = () => {
           sx={{
             minHeight: 48,
             px: 2.5,
+            background: 'none',
+            '& .MuiTouchRipple-root .MuiTouchRipple-root':{
+              background: 'red',
+            },
+            '&:hover': {
+              background: '#d1e8ec',
+            },
           }}
           onClick={onClick && onClick}
         >
@@ -138,8 +135,8 @@ export const DrawerLinks = () => {
               minWidth: 0,
               mr: open ? 3 : 'auto',
               marginLeft: '0',
-              '& .MuiListItemIcon-root':{
-                color: '#119EB5',
+              '& .MuiListItemIcon-root': {
+                color: '#d1e8ec',
               },
             }}
           >
@@ -147,7 +144,9 @@ export const DrawerLinks = () => {
           </ListItemIcon>
           {open && (
             <ListItemText
-              sx={{'& .MuiTypography-root': {fontFamily: '"Albert Sans", sans-serif'}}}
+              sx={{
+                '& .MuiTypography-root': { fontFamily: fontFamily.primary },
+              }}
               primary={text}
             />
           )}
@@ -156,11 +155,13 @@ export const DrawerLinks = () => {
     </ListItem>
   );
   return (
-    <List sx={{
-      '& .MuiListItemText-root': {
-        color: '#505050',
-      }
-    }}>
+    <List
+      sx={{
+        '& .MuiListItemText-root': {
+          color: '#505050',
+        },
+      }}
+    >
       {pages.map((page) => (
         <MenuItem key={page.id} {...page} />
       ))}
