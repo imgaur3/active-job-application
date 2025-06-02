@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router';
 import { get } from 'lodash';
 import { dialogClose, dialogOpen } from '../../../../redux-modules/dialog/Actions';
 import { useDispatch } from 'react-redux';
-import { Button } from '../../../../components/index';
+import { Button, Tooltip } from '../../../../components/index';
 import AddCompany from './Dialog/AddCompany';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { fontFamily } from '../../../../../src/common/utils/constants';
@@ -47,19 +47,19 @@ const Companies = () => {
       description: 'Pune, India',
       status: 'Active',
     },
-      {
+    {
       id: '2',
       title: 'Infosys Technologies',
       description: 'Hydrabad, India',
       status: 'Inactive',
     },
-      {
+    {
       id: '3',
       title: 'Wipro Technologies',
       description: 'Pune, India',
       status: 'inactive',
     },
-      {
+    {
       id: '4',
       title: 'Tech Mahindra',
       description: 'Mumbai, India',
@@ -121,8 +121,12 @@ const Companies = () => {
       key: 'action',
       renderCell: () => (
         <Box>
-          <EditIcon className='text-[16px] text-[#11A5BD] cursor-pointer mr-[6px]' onClick={handleEdit} />
-          <DeleteOutlineIcon className='text-[16px] text-[#11A5BD] cursor-pointer' onClick={handleDelete} />
+          <Tooltip title={"Edit"} placement="top">
+            <EditIcon className='text-[16px] text-[#11A5BD] cursor-pointer mr-[6px]' onClick={handleEdit} />
+          </Tooltip>
+          <Tooltip title={"Delete"} placement="top">
+            <DeleteOutlineIcon className='text-[16px] text-[#11A5BD] cursor-pointer' onClick={handleDelete} />
+          </Tooltip>
         </Box>
       ),
       textAlign: 'right',

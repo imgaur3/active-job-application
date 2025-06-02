@@ -34,7 +34,7 @@ export const InputTextField = ({
 }: FormInputProps) => {
   return (
     <Box>
-      {label && <FieldLabel text={label} required={required} />}
+      {label && <FieldLabel text={label} required={required}/>}
       <Controller
         name={name}
         control={control}
@@ -49,7 +49,7 @@ export const InputTextField = ({
               variant="outlined"
               type={type}
               value={value}
-              className='text-[#ffffff] w-full'
+              className='text-[#404040] w-full'
               onKeyDown={onKeyDown}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 onChange(get(e, 'target.value').trimStart());
@@ -58,33 +58,34 @@ export const InputTextField = ({
               placeholder={placeholder}
               InputProps={{
                 ...InputProps,
-                className: 'text-[#ffffff] placeholder:text-[#ffffff]',
+                className: 'text-[#404040] placeholder:text-[#404040]',
               }}
               InputLabelProps={{
                 ...InputLabelProps,
                 classes: {
-                  root: 'text-[#ffffff]',
-                  focused: 'text-[#ffffff]!',
+                  root: 'text-[#404040]',
+                  focused: 'text-[#404040]!',
                 }
               }}
               sx={{
+                padding: 1,
                 "& .MuiOutlinedInput-root": {
-                  color: "#fff",
+                  color: "#404040",
                   fontFamily: "albert sans",
                   "& .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "#ffffff",
+                    borderColor: "#404040",
                     borderWidth: "1px",
                   },
                 },
                 "& .MuiInputLabel-outlined": {
-                  color: "#2e2e2e",
+                  color: "#404040",
                   fontWeight: "bold",
                 },
                 "& .MuiOutlinedInput-input:focus":{
-                  borderColor: "#ffffff",
+                  borderColor: "#404040",
                 },
                 "& .MuiSvgIcon-root": {
-                  color: "#ffffff",
+                  color: "#404040",
                 }
               }}
               disabled={disabled}

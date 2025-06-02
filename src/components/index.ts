@@ -6,5 +6,7 @@ import Tabs from './Tabs';
 import Table from './CustomizedTable';
 import WrapperDialog from "./Dialog";
 import AppBarContainer from "./AppBar/AppBar";
+import Tooltip from './Tooltip/Tooltip';
+import AreaChart from './AreaChart'
 
-export {InputField, Button, AuthWrapper, Drawer, Tabs, Table, WrapperDialog, AppBarContainer};
+export { InputField, Button, AuthWrapper, Drawer, Tabs, Table, WrapperDialog, AppBarContainer, Tooltip, AreaChart };

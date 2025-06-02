@@ -8,7 +8,7 @@ type FieldLabelProps = {
 
 const FieldLabel = ({ text, required }: FieldLabelProps) => {
   return (
-    <Typography className='text-[#ffffff] font-[Albert_Sans] text-[14px] font-light'>
+    <Typography className='text-[#404040] font-[Albert_Sans] text-[14px] font-light px-2'>
       {text}
       {required && <span>*</span>}
     </Typography>

@@ -113,7 +113,8 @@ const CustomizedTable = ({
           fontFamily: fontFamily.primary,
         },
         overflow: 'auto',
-        height: 'calc(100vh - 480px)',
+        // height: 'calc(100vh - 480px)',
+        height: '100%',
         '& .MuiTableContainer-root': {
           height: '100%',
         },
@@ -133,13 +134,13 @@ const CustomizedTable = ({
           fontWeight: 400,
           height: '60px',
           '&:last-child': {
-            padding: '0px 40px 0px 0px', // Added to fix scroll bar on windows
+            padding: '0px 40px 0px 0px',
           },
         },
         '& .MuiTableCell-body': {
           height: '45px',
           '&:last-child': {
-            padding: '0px 40px 0px 0px', // Added to fix scroll bar on windows
+            padding: '0px 40px 0px 0px',
           },
         },
         '& p': {

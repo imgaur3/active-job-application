@@ -118,7 +118,7 @@ const Drawer = () => {
               <DrawerLinks />
             </List>
           </Box>
-          <Box className=" cursor-pointer" onClick={handleLogout}>
+          <Box className="cursor-pointer" onClick={handleLogout}>
             {
               open ?
                 <Box className="flex justify-around items-center h-[15vh]!">

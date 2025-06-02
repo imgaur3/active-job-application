@@ -13,7 +13,7 @@ function* DialogOpenAsync(data: any) {
   const newList = [...state, payload];
   yield put({ type: DIALOG_OPEN, payload: newList });
 }
-function* dialogCloseAsync(data: any) {
+function* DialogCloseAsync(data: any) {
   const { payload } = data;
   const state: string[] = yield select(
     (state: RootState) => state.dialog.openModelIds,
@@ -25,6 +25,6 @@ function* dialogCloseAsync(data: any) {
 }
 function* DialogSagas() {
   yield takeLatest(DIALOG_OPEN_ASYNC, DialogOpenAsync);
-  yield takeLatest(DIALOG_CLOSE_ASYNC, dialogCloseAsync);
+  yield takeLatest(DIALOG_CLOSE_ASYNC, DialogCloseAsync);
 }
 export default DialogSagas;

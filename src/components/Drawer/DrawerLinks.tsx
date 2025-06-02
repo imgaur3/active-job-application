@@ -127,6 +127,9 @@ export const DrawerLinks = () => {
             '&:hover': {
               background: '#d1e8ec',
             },
+            '& .MuiTouchRipple-root': {
+              color: '#11A5BD',
+            }
           }}
           onClick={onClick && onClick}
         >
