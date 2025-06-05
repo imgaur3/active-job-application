@@ -18,6 +18,8 @@ import { errorMessageHandler } from '../../common/utils/helpers';
 import { signinAPi } from '../../services/auth';
 
 function* login({ payload }: ISagaAction<LoginPayload>) {
+  // eslint-disable-next-line no-undef
+  console.log(payload, 'test');
   try {
     yield put({ type: LOGIN_LOADING });
     const res: AxiosResponse = yield call(() => signinAPi(payload));

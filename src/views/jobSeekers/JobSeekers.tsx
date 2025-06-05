@@ -12,10 +12,7 @@ import { Button, Tooltip } from '../../components/index';
 import Table from '../../components/CustomizedTable/Table';
 
 
-
 const JobSeekers = () => {
-
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
 

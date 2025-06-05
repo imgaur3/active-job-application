@@ -19,6 +19,7 @@ import { InputTextField } from '../../../components/FormField';
 import { Link, useNavigate } from 'react-router';
 import { LogInScreen } from '../../../assets/images';
 import { LogoAi } from '../../../assets/svg';
+import { logIn } from '../../../../src/redux-modules/auth/Actions';
 
 const SignIn = () => {
   const dispatch = useDispatch();
@@ -42,7 +43,8 @@ const SignIn = () => {
 
   const onSubmit = async () => {
     const payload = { ...getValues() };
-    dispatch(AuthActions.logIn({ ...payload }));
+    // dispatch(AuthActions.logIn({ ...payload }));
+    dispatch(logIn(payload));
     navigate('/dashboard');
 
   };

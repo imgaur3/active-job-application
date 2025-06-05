@@ -65,6 +65,62 @@ const Companies = () => {
       description: 'Mumbai, India',
       status: 'Active',
     },
+    {
+      id: '4',
+      title: 'Tech Mahindra',
+      description: 'Mumbai, India',
+      status: 'Active',
+    }, {
+      id: '4',
+      title: 'Tech Mahindra',
+      description: 'Mumbai, India',
+      status: 'Active',
+    }, {
+      id: '4',
+      title: 'Tech Mahindra',
+      description: 'Mumbai, India',
+      status: 'Active',
+    }, {
+      id: '4',
+      title: 'Tech Mahindra',
+      description: 'Mumbai, India',
+      status: 'Active',
+    }, {
+      id: '4',
+      title: 'Tech Mahindra',
+      description: 'Mumbai, India',
+      status: 'Active',
+    }, {
+      id: '4',
+      title: 'Tech Mahindra',
+      description: 'Mumbai, India',
+      status: 'Active',
+    }, {
+      id: '4',
+      title: 'Tech Mahindra',
+      description: 'Mumbai, India',
+      status: 'Active',
+    }, {
+      id: '4',
+      title: 'Tech Mahindra',
+      description: 'Mumbai, India',
+      status: 'Active',
+    }, {
+      id: '4',
+      title: 'Tech Mahindra',
+      description: 'Mumbai, India',
+      status: 'Active',
+    }, {
+      id: '4',
+      title: 'Tech Mahindra',
+      description: 'Mumbai, India',
+      status: 'Active',
+    }, {
+      id: '4',
+      title: 'Tech Mahindra',
+      description: 'Mumbai, India',
+      status: 'Active',
+    },
   ];
 
   const columns = [

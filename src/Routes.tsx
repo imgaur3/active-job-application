@@ -8,17 +8,17 @@ import { AuthSelectors } from './redux-modules/auth';
 import { IRoute } from './common/Types';
 import createRoutes from './common/utils/routeUtils';
 import { ForgotPasswordRoute } from './views/auth/ForgotPassword/Routes';
-import { RegisterRoute } from './views/auth/Register/Routes';
 import { JobSeekerRoute } from './views/jobSeekers/Routes';
 import { ApplicationsRoute } from './views/applications/Routes';
 import { SettingsRoute } from './views/settings/Routes';
 import { RegisterDataRoute } from './views/register/Routes';
 import { UsersRoute } from './views/register/components/users/Routes';
 import { CompaniesRoute } from './views/register/components/Companies/Routes';
+import { AllUsersRoute } from './views/users/Routes';
 
 const App = () => {
-  const PublicRoutes: IRoute[] = [SignInRoute, NotFoundRoute, ForgotPasswordRoute, RegisterRoute];
-  const ProtectedRoutes: IRoute[] = [HomeRoute, JobSeekerRoute, ApplicationsRoute, SettingsRoute, RegisterDataRoute, UsersRoute, CompaniesRoute];
+  const PublicRoutes: IRoute[] = [SignInRoute, NotFoundRoute, ForgotPasswordRoute];
+  const ProtectedRoutes: IRoute[] = [HomeRoute, JobSeekerRoute, ApplicationsRoute, SettingsRoute, RegisterDataRoute, UsersRoute, CompaniesRoute, AllUsersRoute];
 
   const auth = useSelector(AuthSelectors.auth);
   const loggedIn = get(auth, 'loggedIn');

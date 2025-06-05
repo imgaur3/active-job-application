@@ -14,6 +14,7 @@ import { get, isEmpty } from 'lodash';
 import { useSelector, shallowEqual } from 'react-redux'; // Import shallowEqual
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import { fontFamily } from '../../../src/common/utils/constants';
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 type ArrayType = {
@@ -109,12 +110,11 @@ const CustomizedTable = ({
   return (
     <>
       <TableContainer sx={{
-        '*':{
+        '*': {
           fontFamily: fontFamily.primary,
         },
         overflow: 'auto',
-        // height: 'calc(100vh - 480px)',
-        height: '100%',
+        height: 'calc(100vh - 280px)',
         '& .MuiTableContainer-root': {
           height: '100%',
         },
@@ -155,14 +155,8 @@ const CustomizedTable = ({
             {isLoading ? (
               <TableRow>
                 <TableCell colSpan={columns.length}>
-                  <Box sx={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    minHeight: '50vh',
-                  }}>
-                    Test
+                  <Box className="flex items-center justify-center">
+                    <CircularProgress />
                   </Box>
                 </TableCell>
               </TableRow>

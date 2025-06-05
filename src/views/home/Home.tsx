@@ -37,8 +37,8 @@ const Dashboard = () => {
         </Grid>
         <Grid size={{ lg: 6 }}>
           <Box className="w-full bg-[#F5F5F5] rounded-3xl flex items-center justify-center h-[calc(100vh-380px)]! p-2">
-             <AreaChart />
-            </Box>
+            <AreaChart />
+          </Box>
         </Grid>
       </Grid>
     </>

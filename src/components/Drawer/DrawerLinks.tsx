@@ -62,6 +62,20 @@ export const DrawerLinks = () => {
       path: '/job-seekers',
     },
     {
+      text: 'Users',
+      id: useId(),
+      icon: (
+        <img
+          src={
+            location.pathname.includes('users')
+              ? ActiveSeeker
+              : ActiveSeeker
+          }
+        />
+      ),
+      path: '/all-users',
+    },
+    {
       text: 'Applications',
       id: useId(),
       icon: (
@@ -121,7 +135,7 @@ export const DrawerLinks = () => {
             minHeight: 48,
             px: 2.5,
             background: 'none',
-            '& .MuiTouchRipple-root .MuiTouchRipple-root':{
+            '& .MuiTouchRipple-root .MuiTouchRipple-root': {
               background: 'red',
             },
             '&:hover': {

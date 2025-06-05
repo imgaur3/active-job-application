@@ -15,6 +15,8 @@ export const LOG_OUT_ERROR = 'LOG_OUT_ERROR';
 export const EMPTY_AUTH_STATE = 'EMPTY_AUTH_STATE';
 
 export const logIn = (payload: LoginPayload) => {
+  // eslint-disable-next-line no-undef
+  console.log(payload, 'test action payload');
   return {
     type: LOGIN,
     payload,
