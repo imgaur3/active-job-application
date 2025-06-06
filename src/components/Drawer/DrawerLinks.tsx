@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { GlobalSelectors } from '../../redux-modules/global';
-import { ActiveDashboard, ActiveSeeker, ActiveApplication, ActiveSetting, ActiveRegister } from '../../assets/svg';
+import { ActiveDashboard, ActiveSeeker, ActiveApplication, ActiveSetting, ActiveRegister, JobSeekerIcon } from '../../assets/svg';
 import { fontFamily } from '../../../src/common/utils/constants';
 
 
@@ -54,8 +54,8 @@ export const DrawerLinks = () => {
         <img
           src={
             location.pathname.includes('job-seekers')
-              ? ActiveSeeker
-              : ActiveSeeker
+              ? JobSeekerIcon
+              : JobSeekerIcon
           }
         />
       ),

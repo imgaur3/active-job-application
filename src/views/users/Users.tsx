@@ -1,20 +1,19 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect } from 'react';
 import { Box } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllUsers } from '../../../src/redux-modules/users/Actions';
-import { allUsersDetails } from '../../../src/redux-modules/users/Selectors';
-import Typography from '../../../src/components/WrappedTypography';
-import { fontFamily } from '../../../src/common/utils/constants';
-import { Button, Tooltip } from '../../../src/components';
+import { allUsersDetails } from 'src/redux-modules/users/Selectors';
+import Typography from 'src/components/WrappedTypography';
+import { fontFamily } from 'src/common/utils/constants';
+import { Button, Tooltip } from 'src/components';
 import { useNavigate } from 'react-router';
-import { dialogOpen } from '../../../src/redux-modules/dialog/Actions';
+import { dialogOpen } from 'src/redux-modules/dialog/Actions';
 import { get } from 'lodash';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import Table from '../../components/CustomizedTable/Table';
-import { User } from '../../../src/redux-modules/auth/Types';
+import { User } from 'src/redux-modules/auth/Types';
+import { getAllUsers } from 'src/redux-modules/users/Actions';
 
 const Users = () => {
     const dispatch = useDispatch();

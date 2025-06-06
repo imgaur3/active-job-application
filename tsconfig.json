@@ -1,5 +1,22 @@
 {
   "compilerOptions": {
+    "paths": {
+      "src/*": [
+        "src/*"
+      ],
+      "@components/*": [
+        "components/*"
+      ],
+      "@redux/*": [
+        "redux-modules/*"
+      ],
+      "@views/*": [
+        "views/*"
+      ],
+      "@utils/*": [
+        "common/utils/*"
+      ]
+    },
     "baseUrl": ".",
     "target": "ESNext",
     "module": "ESNext",
@@ -13,7 +30,7 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": false,
-    "noImplicitAny": false, 
+    "noImplicitAny": false,
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "Node",
     "resolveJsonModule": true,

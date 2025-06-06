@@ -43,7 +43,6 @@ const SignIn = () => {
 
   const onSubmit = async () => {
     const payload = { ...getValues() };
-    // dispatch(AuthActions.logIn({ ...payload }));
     dispatch(logIn(payload));
     navigate('/dashboard');
 
@@ -114,9 +113,6 @@ const SignIn = () => {
                 <Typography className='text-[#FFFFFF] font-[Albert_Sans]'> <Link to="/forgot-password">Forgot Password?</Link></Typography>
               </Box>
             </form>
-          </Box>
-          <Box className='py-[20px] pb-[40px] mt-10 flex justify-between'>
-            <Typography className='text-[#FFFFFF] font-[mulish]!'>Don&apos;t have account? <span className='text-[#000000]'><Link to={'/register'}>SignUp</Link></span></Typography>
           </Box>
         </Box>
       </Box>

@@ -1,5 +1,4 @@
 import { all, call, fork, put, takeLatest } from 'redux-saga/effects';
-import { AxiosResponse } from 'axios';
 import storage from 'redux-persist/lib/storage';
 import { NavigateFunction } from 'react-router-dom';
 
@@ -11,18 +10,22 @@ import {
   LOG_OUT,
   LOG_OUT_COMPLETE,
   LOG_OUT_ERROR,
+  RESET_PASSWORD,
+  RESET_PASSWORD_COMPLETE,
+  RESET_PASSWORD_ERROR,
+  RESET_PASSWORD_LOADING,
 } from './Actions';
 import { ISagaAction } from '../../common/Types';
-import { LoginPayload } from './Types';
+import { LoginPayload, ResetPasswordPayload } from './Types';
 import { errorMessageHandler } from '../../common/utils/helpers';
-import { signinAPi } from '../../services/auth';
+import { forgotPasswordAPI, signinAPI } from '../../services/auth';
 
 function* login({ payload }: ISagaAction<LoginPayload>) {
-  // eslint-disable-next-line no-undef
-  console.log(payload, 'test');
   try {
     yield put({ type: LOGIN_LOADING });
-    const res: AxiosResponse = yield call(() => signinAPi(payload));
+    const res = yield call(() => signinAPI(payload));
+    // eslint-disable-next-line no-undef
+    console.log(res, 'test');
     yield put({ type: LOGIN_COMPLETE, payload: res });
   } catch (err) {
     const message = errorMessageHandler(err);
@@ -35,11 +38,22 @@ function* logOut({ payload }: ISagaAction<{ navigate: NavigateFunction }>) {
   try {
     yield put({ type: LOG_OUT_COMPLETE });
     storage.removeItem('persist:root');
-    // redirect to signin
     navigate('/sign-in');
   } catch (error) {
     const message: string = errorMessageHandler(error);
     yield put({ type: LOG_OUT_ERROR, payload: message });
+  }
+}
+
+function* resetPassword({ payload }: ISagaAction<ResetPasswordPayload>) {
+  try {
+    yield put({ type: RESET_PASSWORD_LOADING });
+    const res = yield call(() => forgotPasswordAPI(payload));
+    yield put({ type: RESET_PASSWORD_COMPLETE, payload: res })
+  }
+  catch (error) {
+    const message: string = errorMessageHandler(error);
+    yield put({ type: RESET_PASSWORD_ERROR, payload: message });
   }
 }
 
@@ -51,6 +65,10 @@ function* logOutSaga() {
   yield takeLatest(LOG_OUT, logOut);
 }
 
+function* resetPasswordSaga() {
+  yield takeLatest(RESET_PASSWORD, resetPassword);
+}
+
 export default function* authSagas() {
-  yield all([fork(loginSaga), fork(logOutSaga)]);
+  yield all([fork(loginSaga), fork(logOutSaga), fork(resetPasswordSaga)]);
 }

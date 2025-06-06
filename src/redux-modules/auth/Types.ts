@@ -24,4 +24,8 @@ export type LoginPayload = {
     type: string;
     payload?: AuthPayload;
   };
+
+  export type ResetPasswordPayload = {
+    email: string;
+  }
   

@@ -68,7 +68,6 @@ export const InputTextField = ({
                 }
               }}
               sx={{
-                padding: 1,
                 "& .MuiOutlinedInput-root": {
                   color: "#404040",
                   fontFamily: "albert sans",
