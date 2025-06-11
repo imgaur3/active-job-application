@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import Table from '../../../../components/CustomizedTable/Table';
 import { useNavigate } from 'react-router';
 import { get } from 'lodash';
 import { dialogClose, dialogOpen } from '../../../../redux-modules/dialog/Actions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button, Tooltip } from '../../../../components/index';
 import AddCompany from './Dialog/AddCompany';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
@@ -14,13 +14,18 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import DeleteCompany from './Dialog/DeleteCompany';
 import EditCompany from './Dialog/EditCompany';
+import { getAllCompanies } from 'src/redux-modules/companies/Actions';
+import { companies } from 'src/redux-modules/companies/Selectors';
 
 const Companies = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const companyList = useSelector(companies)
   const [deleteBlog, setDeleteBlog] = useState(null);
   const [editCompany, setEditCompany] = useState(null);
 
+
+  const listData = get(companyList.company, 'data.companies');
 
   const handleNavigate = (rowData: string) => {
     navigate(`/company/details/${rowData}`);
@@ -40,120 +45,37 @@ const Companies = () => {
     dispatch(dialogClose(''));
   };
 
-  const colData = [
-    {
-      id: '1',
-      title: 'Tata Consultancy Services',
-      description: 'Pune, India',
-      status: 'Active',
-    },
-    {
-      id: '2',
-      title: 'Infosys Technologies',
-      description: 'Hydrabad, India',
-      status: 'Inactive',
-    },
-    {
-      id: '3',
-      title: 'Wipro Technologies',
-      description: 'Pune, India',
-      status: 'inactive',
-    },
-    {
-      id: '4',
-      title: 'Tech Mahindra',
-      description: 'Mumbai, India',
-      status: 'Active',
-    },
-    {
-      id: '4',
-      title: 'Tech Mahindra',
-      description: 'Mumbai, India',
-      status: 'Active',
-    }, {
-      id: '4',
-      title: 'Tech Mahindra',
-      description: 'Mumbai, India',
-      status: 'Active',
-    }, {
-      id: '4',
-      title: 'Tech Mahindra',
-      description: 'Mumbai, India',
-      status: 'Active',
-    }, {
-      id: '4',
-      title: 'Tech Mahindra',
-      description: 'Mumbai, India',
-      status: 'Active',
-    }, {
-      id: '4',
-      title: 'Tech Mahindra',
-      description: 'Mumbai, India',
-      status: 'Active',
-    }, {
-      id: '4',
-      title: 'Tech Mahindra',
-      description: 'Mumbai, India',
-      status: 'Active',
-    }, {
-      id: '4',
-      title: 'Tech Mahindra',
-      description: 'Mumbai, India',
-      status: 'Active',
-    }, {
-      id: '4',
-      title: 'Tech Mahindra',
-      description: 'Mumbai, India',
-      status: 'Active',
-    }, {
-      id: '4',
-      title: 'Tech Mahindra',
-      description: 'Mumbai, India',
-      status: 'Active',
-    }, {
-      id: '4',
-      title: 'Tech Mahindra',
-      description: 'Mumbai, India',
-      status: 'Active',
-    }, {
-      id: '4',
-      title: 'Tech Mahindra',
-      description: 'Mumbai, India',
-      status: 'Active',
-    },
-  ];
-
   const columns = [
     {
       name: 'S.No.',
-      key: 'sno',
+      key: 'serial_no',
       renderCell: (rowData: string) => (
         <p
           onClick={() => handleNavigate(rowData)}
         >
-          {get(rowData, 'id')}
+          {get(rowData, 'serial_no')}
         </p>
       ),
       textAlign: 'left',
     },
     {
       name: 'Company Name',
-      key: 'companyName',
+      key: 'name',
       renderCell: (rowData: string) => (
         <p
           onClick={() => handleNavigate(rowData)}
         >
-          {get(rowData, 'title')}
+          {get(rowData, 'name')}
         </p>
       ),
       textAlign: 'left',
     },
     {
-      name: 'Location',
-      key: 'location',
+      name: 'Type',
+      key: 'type',
       renderCell: (rowData: string) => (
         <p>
-          {get(rowData, 'description')}
+          {get(rowData, 'type')}
         </p>
       ),
       textAlign: 'left',
@@ -192,6 +114,11 @@ const Companies = () => {
   const handleOpen = () => {
     dispatch(dialogOpen('applicationDialog'));
   };
+
+  useEffect(() => {
+    dispatch(getAllCompanies())
+  }, [dispatch])
+
   return (
     <Box>
       <Box className="w-full flex justify-between text-right mb-4 items-center">
@@ -208,9 +135,9 @@ const Companies = () => {
         />
       </Box>
       <Table
-        context={colData}
+        context={''}
         columns={columns}
-        tableData={colData}
+        tableData={listData}
         isLoading={false}
         rowsPerPage={20}
       />

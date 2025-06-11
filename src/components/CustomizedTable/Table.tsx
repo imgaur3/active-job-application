@@ -11,7 +11,7 @@ import {
   Pagination,
 } from '@mui/material';
 import { get, isEmpty } from 'lodash';
-import { useSelector, shallowEqual } from 'react-redux'; // Import shallowEqual
+import { useSelector, shallowEqual } from 'react-redux';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import { fontFamily } from '../../../src/common/utils/constants';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -32,11 +32,11 @@ type ArrayType = {
 };
 
 type tableProps = {
-  context?: any;
-  columns: any;
-  tableData: any;
+  context?: string;
+  columns: ArrayType[];
+  tableData: any[];
   isLoading: boolean;
-  footerRow?: any;
+  footerRow?: string;
   rowsPerPage: number;
   stickyAction?: boolean;
 
@@ -54,7 +54,7 @@ const CustomizedTable = ({
 }: tableProps) => {
   const paginationData = (state: any, context: string) =>
     state.pagination?.[context] ?? {};
-  const [paginatedListData, setPaginatedListData] = useState([]);
+  const [paginatedListData, setPaginatedListData] = useState<number[]>([]);
   const paginationStore = (state: any) => paginationData(state, context ?? '');
   const paginationStoreData = useSelector(paginationStore, shallowEqual);
   const pageCount = Math.ceil(tableData.length / rowsPerPage);

@@ -24,8 +24,6 @@ function* login({ payload }: ISagaAction<LoginPayload>) {
   try {
     yield put({ type: LOGIN_LOADING });
     const res = yield call(() => signinAPI(payload));
-    // eslint-disable-next-line no-undef
-    console.log(res, 'test');
     yield put({ type: LOGIN_COMPLETE, payload: res });
   } catch (err) {
     const message = errorMessageHandler(err);

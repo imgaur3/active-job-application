@@ -3,8 +3,21 @@ import { Box, Grid, Typography, } from "@mui/material";
 import { JobSeeker } from "../../assets/images";
 import DashboardCard from './components/DashboardCard';
 import { AreaChart } from '../../../src/components';
+import { User } from 'src/redux-modules/auth/Types';
+import { getAllUsers } from 'src/redux-modules/users/Actions';
+import { get } from 'lodash';
+import { useSelector } from 'react-redux';
+import { allUsersDetails } from 'src/redux-modules/users/Selectors';
+
 
 const Dashboard = () => {
+  const usersData = useSelector(allUsersDetails);
+  const usersList: User[] = (get(usersData.users, 'data.users'));
+
+  const countObjects = (array) => {
+    return Array.isArray(array) ? array.length : 0;
+  };
+
   return (
     <>
       <Box className="w-full h-[250px] rounded-3xl flex items-center justify-between"
@@ -23,7 +36,7 @@ const Dashboard = () => {
           <Grid size={{ lg: 12 }} className="flex">
             <Grid size={{ lg: 6 }}>
               <Box className="flex items-center justify-between flex-col gap-6">
-                <DashboardCard title={'Users'} count={'1233'} subTitle={'Total Users'} handleNaviagte='/users' />
+                <DashboardCard title={'Users'} count={countObjects(usersList)} subTitle={'Total Users'} handleNaviagte='/all-users' />
                 <DashboardCard title={'Job Seekers'} count={'230'} subTitle={'Total Seekers'} handleNaviagte='/job-seekers' />
               </Box>
             </Grid>

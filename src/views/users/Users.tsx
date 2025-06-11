@@ -19,13 +19,12 @@ const Users = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const usersData = useSelector(allUsersDetails);
-    const { isLoading } = usersData;
-    const usersList: User[] = (get(usersData.users, 'data'));
+    const { isLoading, errorMessage } = usersData;
+    const listData = get(usersData.users, 'data.users');
+
     useEffect(() => {
         dispatch(getAllUsers());
     }, [dispatch]);
-
-
 
     const handleNavigate = (rowData: string) => {
         navigate(`/company/details/${rowData}`);
@@ -39,19 +38,18 @@ const Users = () => {
         dispatch(dialogOpen('deleteCompany'));
     };
 
-
     const columns = [
         {
             name: 'Name',
             key: 'full_name',
             renderCell: (rowData: User) => (
                 <p
-                    className="cursor-pointer text-[#11A5BD]"
+                    className="cursor-pointer text-[#11A5BD] capitalize"
                 >
                     {get(rowData, 'full_name')}
                 </p>
             ),
-            textAlign: 'left',
+            textAlign: 'left' as const,
         },
         {
             name: 'Email',
@@ -61,7 +59,7 @@ const Users = () => {
                     {get(rowData, 'email')}
                 </p>
             ),
-            textAlign: 'left',
+            textAlign: 'left' as const,
         },
         {
             name: 'Degree',
@@ -71,7 +69,7 @@ const Users = () => {
                     {get(rowData, 'degree')}
                 </p>
             ),
-            textAlign: 'left',
+            textAlign: 'left' as const,
         },
         {
             name: 'DOB',
@@ -81,7 +79,7 @@ const Users = () => {
                     {get(rowData, 'dob')}
                 </p>
             ),
-            textAlign: 'left',
+            textAlign: 'left' as const,
         },
         {
             name: 'Experience',
@@ -91,7 +89,7 @@ const Users = () => {
                     {get(rowData, 'experience')}
                 </p>
             ),
-            textAlign: 'left',
+            textAlign: 'left' as const,
         },
         {
             name: 'Notice Period',
@@ -101,7 +99,7 @@ const Users = () => {
                     {get(rowData, 'notice_period')}
                 </p>
             ),
-            textAlign: 'left',
+            textAlign: 'left' as const,
         },
         {
             name: 'Overseas',
@@ -111,7 +109,7 @@ const Users = () => {
                     {get(rowData, 'overseas')}
                 </p>
             ),
-            textAlign: 'left',
+            textAlign: 'left' as const,
         },
         {
             name: 'Salary',
@@ -121,7 +119,7 @@ const Users = () => {
                     {get(rowData, 'salary')}
                 </p>
             ),
-            textAlign: 'left',
+            textAlign: 'left' as const,
         },
         {
             name: 'Skills',
@@ -131,7 +129,7 @@ const Users = () => {
                     {get(rowData, 'skills')}
                 </p>
             ),
-            textAlign: 'left',
+            textAlign: 'left' as const,
         },
         {
             name: 'Specialization',
@@ -141,7 +139,7 @@ const Users = () => {
                     {get(rowData, 'specialization')}
                 </p>
             ),
-            textAlign: 'left',
+            textAlign: 'left' as const,
         },
         {
             name: 'Action',
@@ -156,7 +154,7 @@ const Users = () => {
                     </Tooltip>
                 </Box>
             ),
-            textAlign: 'right',
+            textAlign: 'right' as const,
         },
     ];
 
@@ -166,6 +164,9 @@ const Users = () => {
 
     return (
         <Box className="bg-[#d1e8ec] mt-4 rounded-3xl p-6">
+            <Box>
+                <Typography>{errorMessage}</Typography>
+            </Box>
             <Box className="w-full flex justify-between text-right mb-4 items-center">
                 <Typography className='text-[#11A5BD] text-[18px]!' sx={{ fontFamily: fontFamily.primary }}>Companies and thier details</Typography>
                 <Button
@@ -182,7 +183,7 @@ const Users = () => {
             <Table
                 context={'all-users-table'}
                 columns={columns}
-                tableData={usersList}
+                tableData={listData}
                 isLoading={isLoading}
                 rowsPerPage={20}
             />

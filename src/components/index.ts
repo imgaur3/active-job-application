@@ -10,5 +10,7 @@ import Tooltip from './Tooltip/Tooltip';
 import AreaChart from './AreaChart';
 import WrappedTypography from './WrappedTypography';
 import Loader from './Loader';
+import Alert from './Alert';
+import FileUploadButton from './UploadButton';
 
-export { InputField, Button, AuthWrapper, Drawer, Tabs, Table, WrapperDialog, AppBarContainer, Tooltip, AreaChart, WrappedTypography, Loader };
+export { InputField, Button, AuthWrapper, Drawer, Tabs, Table, WrapperDialog, AppBarContainer, Tooltip, AreaChart, WrappedTypography, Loader, Alert, FileUploadButton };

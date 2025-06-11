@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import React from 'react';
 import { Box, Tooltip, Typography } from "@mui/material";
 import { Control, FieldValues, useForm } from "react-hook-form";
@@ -13,10 +12,16 @@ import { ForgotPasswordImage } from '../../../../src/assets/images';
 import { Link } from 'react-router';
 import { LogoAi } from '../../../../src/assets/svg';
 import { resetPassword } from '../../../../src/redux-modules/auth/Actions';
+import { get } from 'lodash';
+
 
 const ForgotPassword = () => {
   const dispatch = useDispatch();
+  const tokenData = useSelector(AuthSelectors.auth);
+  const token = get(tokenData.user, 'data.access_token');
+
   const forgotPasswordSchema = yup.object().shape({
+    password: yup.string().required('This field is required!'),
     email: yup
       .string()
       .email(formFieldConstants.emailValidConstant)
@@ -31,9 +36,12 @@ const ForgotPassword = () => {
   });
 
   const onSubmit = (data: FieldValues) => {
-    const payload = { ...data };
-    dispatch(resetPassword(payload.email));
-    console.log(payload, 'payload');
+    const payload = {
+      email: data.email,
+      token: token,
+      password: data.password,
+    };
+    dispatch(resetPassword(payload));
   };
   return (
     <Box className="flex justify-around items-center w-full h-screen">
@@ -57,7 +65,16 @@ const ForgotPassword = () => {
                   name="email"
                   control={control as unknown as Control<FieldValues>}
                   variant="standard"
-                  placeholder="Enter Email"
+                  placeholder="Registered Email"
+                  required
+                />
+              </Box>
+              <Box className="mt-6">
+                <InputTextField
+                  name="password"
+                  control={control as unknown as Control<FieldValues>}
+                  variant="standard"
+                  placeholder="New Password"
                   required
                 />
               </Box>

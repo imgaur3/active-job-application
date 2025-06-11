@@ -7,5 +7,5 @@ export const signinAPI = (payload: LoginPayload) => {
 
 
 export const forgotPasswordAPI = (payload: ResetPasswordPayload) => {
-  return secureApi.post('/reset-password', payload);
+  return secureApi.post('/forgot-password', payload);
 }

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import Tabs from '../../components/Tabs';
-import Users from './components/users/Users';
 import Companies from './components/Companies/Companies';
+import Users from '../users/Users';
 
 const Register = () => {
   return (

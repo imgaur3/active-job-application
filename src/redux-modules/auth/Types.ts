@@ -27,5 +27,7 @@ export type LoginPayload = {
 
   export type ResetPasswordPayload = {
     email: string;
+    token: string;
+    password: string;
   }
   

@@ -8,6 +8,7 @@ import { validateCompany } from './validations';
 import { InputTextField } from '../../../../../../src/components/FormField';
 import { Box, Grid } from '@mui/material';
 import { Button } from '../../../../../../src/components';
+import SelectField from 'src/components/FormField/SelectField';
 
 const AddCompany = () => {
   const dispatch = useDispatch();
@@ -28,6 +29,11 @@ const AddCompany = () => {
     console.log('Form Data:', formData);
   };
 
+  const handleChange = () => {
+    // eslint-disable-next-line no-undef
+    console.log('test');
+  }
+
   return (
     <WrapperDialog
       id='applicationDialog'
@@ -40,8 +46,8 @@ const AddCompany = () => {
           <Grid container>
             <Grid size={{ lg: 6 }}>
               <InputTextField
-                label="Name"
-                name="name"
+                label="Company Name"
+                name="companyName"
                 control={control as unknown as Control<FieldValues>}
                 variant="standard"
                 placeholder="Enter Name"
@@ -50,7 +56,7 @@ const AddCompany = () => {
             </Grid>
             <Grid size={{ lg: 6 }}>
               <InputTextField
-                label="Email"
+                label="Email Address"
                 name="email"
                 control={control as unknown as Control<FieldValues>}
                 variant="standard"
@@ -59,86 +65,16 @@ const AddCompany = () => {
               />
             </Grid>
             <Grid size={{ lg: 6 }}>
-              <InputTextField
-                label="Email"
-                name="Your Email"
+              <SelectField
+                name='Industry'
+                label='Select Type'
+                options={['Full-time', 'Part-Time', 'Freelance']}
                 control={control as unknown as Control<FieldValues>}
-                variant="standard"
-                placeholder="Enter Email"
-                required
+                selected={[]}
+                onChange={handleChange}
+                required={false}
               />
             </Grid>
-            <Grid size={{ lg: 6 }}>
-              <InputTextField
-                label="Email"
-                name="Your Email"
-                control={control as unknown as Control<FieldValues>}
-                variant="standard"
-                placeholder="Enter Email"
-                required
-              />
-            </Grid>
-            <Grid size={{ lg: 6 }}>
-              <InputTextField
-                label="Email"
-                name="Your Email"
-                control={control as unknown as Control<FieldValues>}
-                variant="standard"
-                placeholder="Enter Email"
-                required
-              />
-            </Grid>
-            <Grid size={{ lg: 6 }}>
-              <InputTextField
-                label="Email"
-                name="Your Email"
-                control={control as unknown as Control<FieldValues>}
-                variant="standard"
-                placeholder="Enter Email"
-                required
-              />
-            </Grid>
-            <Grid size={{ lg: 6 }}>
-              <InputTextField
-                label="Email"
-                name="Your Email"
-                control={control as unknown as Control<FieldValues>}
-                variant="standard"
-                placeholder="Enter Email"
-                required
-              />
-            </Grid>
-            <Grid size={{ lg: 6 }}>
-              <InputTextField
-                label="Email"
-                name="Your Email"
-                control={control as unknown as Control<FieldValues>}
-                variant="standard"
-                placeholder="Enter Email"
-                required
-              />
-            </Grid>
-            <Grid size={{ lg: 6 }}>
-              <InputTextField
-                label="Email"
-                name="Your Email"
-                control={control as unknown as Control<FieldValues>}
-                variant="standard"
-                placeholder="Enter Email"
-                required
-              />
-            </Grid>
-            <Grid size={{ lg: 6 }}>
-              <InputTextField
-                label="Email"
-                name="Your Email"
-                control={control as unknown as Control<FieldValues>}
-                variant="standard"
-                placeholder="Enter Email"
-                required
-              />
-            </Grid>
-
             <Grid size={{ lg: 6 }}>
               <InputTextField
                 label="Email"

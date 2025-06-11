@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import { AppBarContainer, Drawer } from "../components";
 import { Box } from "@mui/material";
-import Notification from "../../src/views/Notification";
+import Notification from "../views/notification";
 
 type Props = {
   children: ReactNode;

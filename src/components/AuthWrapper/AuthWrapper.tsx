@@ -16,14 +16,13 @@ const AuthWrapper = ({ children }: Props) => {
 
   const auth = useSelector(AuthSelectors.auth);
 
-  // eslint-disable-next-line no-undef
-  console.log(auth, 'wrapper');
-
   useEffect(() => {
-    if (pathname === '/' && auth && !isEmpty(get(auth, 'user.email'))) {
-      navigate('/dashboard');
-    } else if (pathname === '/') {
-      navigate('/sign-in');
+    if (pathname === '/') {
+      if (auth.loggedIn == true && !isEmpty(get(auth.user, 'data.access_token'))) {
+        navigate('/dashboard');
+      } else {
+        navigate('/sign-in');
+      }
     }
   }, [auth, pathname, navigate]);
 
