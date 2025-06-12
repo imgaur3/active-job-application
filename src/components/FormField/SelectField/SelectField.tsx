@@ -28,7 +28,7 @@ type MultiSelectChipProps = {
     selected: string[];
     onChange: (selected: string[]) => void;
     width?: number | string;
-    required: boolean;
+    required?: boolean;
     control: Control<FieldValues>;
     defaultValue?: string;
 };
@@ -48,7 +48,6 @@ const MultiSelectChip: React.FC<MultiSelectChipProps> = ({
     selected,
     required = false,
     onChange,
-    width = 300,
     control,
     defaultValue,
 }) => {
@@ -69,7 +68,11 @@ const MultiSelectChip: React.FC<MultiSelectChipProps> = ({
                 control={control}
                 defaultValue={defaultValue || ''}
                 render={({ field: { onChange, value }, fieldState: { error } }) => (
-                    <Box>
+                    <Box sx={{
+                        '& .MuiOutlinedInput-input': {
+                            padding: 1.1,
+                        }
+                    }}>
                         <Select
                             multiple
                             className='w-full!'

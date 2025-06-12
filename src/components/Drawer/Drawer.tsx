@@ -7,13 +7,13 @@ import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
 import { CSSObject, styled, Theme } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
 import { LogoAi, LogOut } from '../../assets/svg';
-import { AuthActions } from '../../redux-modules/auth';
 import { GlobalSelectors } from '../../redux-modules/global';
 import { toggleSidebar } from '../../redux-modules/global/Actions';
 import DrawerLinks from './DrawerLinks';
 import { fontFamily } from '../../../src/common/utils/constants';
+import { dialogOpen } from 'src/redux-modules/dialog/Actions';
+import LogoutConfirm from 'src/views/logoutConfirm/LogoutConfirm';
 
 const drawerWidth = 300;
 
@@ -75,63 +75,67 @@ const StyledDrawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== '
 
 const Drawer = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const isOpen = useSelector(GlobalSelectors.sidebarToggle);
   const { open } = isOpen;
   const hadleToggleDrawer = () => {
     dispatch(toggleSidebar(!open));
   };
-  const handleLogout = () => {
-    dispatch(AuthActions.logOut({ navigate }));
-  };
+
 
   const closeDrawer = () => {
     dispatch(toggleSidebar(false));
   };
 
-  return (
-    <Box sx={{
-      display: 'flex',
-      '& .MuiDrawer-paper': {
-        backgroundColor: '#FFFFFF',
-        boxShadow: 3,
-      },
+  const confirmLogout = () => {
+    dispatch(dialogOpen('logoutConfirm'));
+  }
 
-    }}>
-      <CssBaseline />
-      <StyledDrawer variant="permanent" open={open} onClose={closeDrawer} sx={{ '& .MuiDrawer-paper': { border: 'none' } }}>
-        <Box className="flex flex-col justify-around items-center">
-          <Box className="h-[15vh]!">
-            <DrawerHeader>
-              <IconButton onClick={hadleToggleDrawer} sx={{ marginTop: '20px', ":hover": { cursor: 'pointer' } }}>
-                {open ?
-                  <Box className="flex items-center">
-                    <img src={LogoAi} alt={LogoAi} />
-                    <Typography sx={{ fontFamily: "'mulish', 'sans serif'", fontSize: 18, marginLeft: 1, }}> ActiveJobs </Typography>
+  return (
+    <>
+      <Box sx={{
+        display: 'flex',
+        '& .MuiDrawer-paper': {
+          backgroundColor: '#FFFFFF',
+          boxShadow: 3,
+        },
+
+      }}>
+        <CssBaseline />
+        <StyledDrawer variant="permanent" open={open} onClose={closeDrawer} sx={{ '& .MuiDrawer-paper': { border: 'none' } }}>
+          <Box className="flex flex-col justify-around items-center">
+            <Box className="h-[15vh]!">
+              <DrawerHeader>
+                <IconButton onClick={hadleToggleDrawer} sx={{ marginTop: '20px', ":hover": { cursor: 'pointer' } }}>
+                  {open ?
+                    <Box className="flex items-center">
+                      <img src={LogoAi} alt={LogoAi} />
+                      <Typography sx={{ fontFamily: "'mulish', 'sans serif'", fontSize: 18, marginLeft: 1, }}> ActiveJobs </Typography>
+                    </Box>
+                    : <img src={LogoAi} alt={LogoAi} />}
+                </IconButton>
+              </DrawerHeader>
+            </Box>
+            <Box className="h-[70vh]!">
+              <List>
+                <DrawerLinks />
+              </List>
+            </Box>
+            <Box className="cursor-pointer" onClick={confirmLogout}>
+              {
+                open ?
+                  <Box className="flex justify-around items-center h-[15vh]!">
+                    <img src={LogOut} alt={LogOut} className='w-[25px]' />
+                    <Typography className='p-2' sx={{ fontFamily: fontFamily.primary }}> Logout </Typography>
                   </Box>
-                  : <img src={LogoAi} alt={LogoAi} />}
-              </IconButton>
-            </DrawerHeader>
-          </Box>
-          <Box className="h-[70vh]!">
-            <List>
-              <DrawerLinks />
-            </List>
-          </Box>
-          <Box className="cursor-pointer" onClick={handleLogout}>
-            {
-              open ?
-                <Box className="flex justify-around items-center h-[15vh]!">
+                  :
                   <img src={LogOut} alt={LogOut} className='w-[25px]' />
-                  <Typography className='p-2' sx={{ fontFamily: fontFamily.primary }}> Logout </Typography>
-                </Box>
-                :
-                <img src={LogOut} alt={LogOut} className='w-[25px]' />
-            }
+              }
+            </Box>
           </Box>
-        </Box>
-      </StyledDrawer>
-    </Box>
+        </StyledDrawer>
+      </Box>
+      <LogoutConfirm />
+    </>
   );
 }
 

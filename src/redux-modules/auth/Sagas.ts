@@ -1,6 +1,6 @@
 import { all, call, fork, put, takeLatest } from 'redux-saga/effects';
 import storage from 'redux-persist/lib/storage';
-import { NavigateFunction } from 'react-router-dom';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
 
 import {
   LOGIN,
@@ -20,13 +20,20 @@ import { LoginPayload, ResetPasswordPayload } from './Types';
 import { errorMessageHandler } from '../../common/utils/helpers';
 import { forgotPasswordAPI, signinAPI } from '../../services/auth';
 
-function* login({ payload }: ISagaAction<LoginPayload>) {
+function* login({ payload }: ISagaAction<LoginPayload & { navigate: NavigateFunction }>) {
   try {
     yield put({ type: LOGIN_LOADING });
     const res = yield call(() => signinAPI(payload));
     yield put({ type: LOGIN_COMPLETE, payload: res });
-  } catch (err) {
-    const message = errorMessageHandler(err);
+    if (res && payload.navigate) {
+      payload.navigate('/dashboard');
+    }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (err: any) {
+    const message =
+      err?.response?.data?.message ||
+      err?.message ||
+      'An unknown error occurred';
     yield put({ type: LOGIN_ERROR, payload: message });
   }
 }

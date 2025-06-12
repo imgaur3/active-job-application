@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import React from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
@@ -21,6 +20,7 @@ import { logIn } from '../../../../src/redux-modules/auth/Actions';
 import Typography from 'src/components/WrappedTypography';
 import { Alert } from 'src/components';
 import { get } from 'lodash';
+import { dialogClose } from 'src/redux-modules/dialog/Actions';
 
 const SignIn = () => {
   const dispatch = useDispatch();
@@ -28,14 +28,12 @@ const SignIn = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const auth = useSelector(AuthSelectors.auth);
 
-  const { isLoading, errorMessage } = auth;
+  const { errorMessage, isLoading } = auth;
 
   const { handleSubmit, getValues, control } = useForm({
     mode: 'onSubmit',
     resolver: yupResolver(signInSchema),
   });
-
-  const token = get(auth.user, 'data.access_token');
 
   const handleTogglePasswordVisibility = (event: {
     preventDefault: () => void;
@@ -47,25 +45,14 @@ const SignIn = () => {
   const onSubmit = async () => {
     const payload = { ...getValues() };
     dispatch(logIn(payload));
-    const authStatus = auth.user;
-    if (get(authStatus, 'status')) {
-      navigate('/dashboard')
-    }
-    else {
-      navigate('/sign-in')
-    }
-
   };
 
   useEffect(() => {
-    if (errorMessage) {
-      const timeout = setTimeout(() => {
-        dispatch(AuthActions.emptyState());
-      }, 100000);
-
-      return () => clearTimeout(timeout);
+    if (get(auth.user, 'status')) {
+      navigate('/dashboard');
+      dispatch(dialogClose(''));
     }
-  }, [errorMessage, dispatch]);
+  }, [auth.user, navigate, dispatch]);
 
 
   return (
@@ -117,7 +104,6 @@ const SignIn = () => {
                   variant="contained"
                   type="submit"
                   isLoading={isLoading}
-                  disabled={isLoading}
                   className='my-[30px] text-[#404040] bg-[#ffffff]'
                 />
                 <Typography className='text-[#FFFFFF] font-[Albert_Sans]'> <Link to="/forgot-password">Forgot Password?</Link></Typography>

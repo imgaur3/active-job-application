@@ -33,7 +33,7 @@ type ArrayType = {
 
 type tableProps = {
   context?: string;
-  columns: ArrayType[];
+  columns: any[];
   tableData: any[];
   isLoading: boolean;
   footerRow?: string;

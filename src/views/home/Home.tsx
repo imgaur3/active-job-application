@@ -4,7 +4,6 @@ import { JobSeeker } from "../../assets/images";
 import DashboardCard from './components/DashboardCard';
 import { AreaChart } from '../../../src/components';
 import { User } from 'src/redux-modules/auth/Types';
-import { getAllUsers } from 'src/redux-modules/users/Actions';
 import { get } from 'lodash';
 import { useSelector } from 'react-redux';
 import { allUsersDetails } from 'src/redux-modules/users/Selectors';
