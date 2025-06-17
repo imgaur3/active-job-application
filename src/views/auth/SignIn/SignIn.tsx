@@ -54,7 +54,6 @@ const SignIn = () => {
     }
   }, [auth.user, navigate, dispatch]);
 
-
   return (
     <Box className="flex flex-row justify-around items-center w-full p-4 max-sm:p-0! overflow-hidden bg-[#FFFFFF]">
       <Box className="flex w-[50%] max-sm:w-[100%]! sm:w-[100%]! h-full max-sm:m-0! rounded-xl max-sm:rounded-none! bg-[#11A5BD]">
@@ -66,7 +65,7 @@ const SignIn = () => {
             <Typography className='text-[25px] text-[#FFFFFF] font-[Albert_sans]'>Welcome to ActiveJobs, </Typography>
             <Typography className='text-[#1E1E1E] font-[mulish]'>Ai-based job provider for your bright future.</Typography>
             <form onSubmit={handleSubmit(onSubmit)} className='pt-[40px]'>
-              <Alert alerts='error' message={errorMessage} onClose={() => dispatch(AuthActions.emptyState())} />
+              <Alert alerts='error' message={errorMessage ? 'Invalid email and password' : ''} onClose={() => dispatch(AuthActions.emptyState())} />
               <InputTextField
                 label="Email"
                 name="email"

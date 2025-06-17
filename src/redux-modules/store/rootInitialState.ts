@@ -9,7 +9,11 @@ export const rootInitialState: RootState = {
     },
     signedUrlLoading: false,
     errorMessage: '',
-    urlResponse: null
+    urlResponse: null,
+    isLoading: false,
+    createOrUpdateError: {
+      message: ''
+    }
   },
   dialog: {
     openModelIds: []

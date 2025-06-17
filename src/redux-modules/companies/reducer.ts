@@ -1,12 +1,16 @@
-import { COMPANIES, COMPANIES_COMPLETE, COMPANIES_ERROR, COMPANIES_LOADING } from "./Actions";
+import { ADD_COMPANY_ERROR, ADD_COMPANY_LOADING, ADD_COMPANY_SUCCESS, COMPANIES, COMPANIES_COMPLETE, COMPANIES_ERROR, COMPANIES_LOADING, EDIT_COMPANY_ERROR, EDIT_COMPANY_LOADING, EDIT_COMPANY_COMPLETE } from "./Actions";
 import { CompanyAction, CompanyState } from "./Types";
 
 export const companiesInitialState: CompanyState = {
     company: {
-        serial_no: '',
-        name: '',
-        status: '',
-        type: '',
+        companyName: "",
+        email: "",
+        status: false,
+        industry: [],
+        country: undefined,
+        platform: "",
+        domain: "",
+        phone: 0
     },
     isLoading: false,
     errorMessage: ""
@@ -34,6 +38,41 @@ export default (state = companiesInitialState, action: CompanyAction) => {
                 company: action.payload,
             }
         case COMPANIES_ERROR:
+            return {
+                ...state,
+                isLoading: false,
+                errorMessage: action.payload,
+            }
+        case ADD_COMPANY_LOADING:
+            return {
+                ...state,
+                isLoading: true,
+                errorMessage: '',
+            }
+        case ADD_COMPANY_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                payload: action.payload
+            }
+        case ADD_COMPANY_ERROR:
+            return {
+                ...state,
+                isLoading: false,
+                errorMessage: action.payload,
+            }
+        case EDIT_COMPANY_LOADING:
+            return {
+                isLoading: true,
+                errorMessage: '',
+            }
+        case EDIT_COMPANY_COMPLETE:
+            return {
+                ...state,
+                isLoading: false,
+                payload: action.payload,
+            }
+        case EDIT_COMPANY_ERROR:
             return {
                 ...state,
                 isLoading: false,

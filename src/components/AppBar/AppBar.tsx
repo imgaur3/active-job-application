@@ -11,13 +11,15 @@ import { dialogOpen } from '../../../src/redux-modules/dialog/Actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { auth } from '../../../src/redux-modules/auth/Selectors';
 import { get } from 'lodash';
+import { useNavigate } from 'react-router';
 
 const AppBarContainer = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const loginPayload = useSelector(auth);
     const user = loginPayload.user;
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
-    const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+    const settings = ['Profile', 'Dashboard', 'Logout'];
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElUser(event.currentTarget);
     };
@@ -28,6 +30,24 @@ const AppBarContainer = () => {
     const handleNotification = () => {
         dispatch(dialogOpen('dashboardNotification'));
     }
+
+    const handleMenuClick = (setting: string) => {
+        handleCloseUserMenu();
+        switch (setting) {
+            case 'Profile':
+                navigate('/setting');
+                break;
+            case 'Dashboard':
+                navigate('/dashboard');
+                break;
+            case 'Logout':
+                dispatch(dialogOpen('logoutConfirm'));
+                break;
+            default:
+                break;
+        }
+    };
+
     return (
         <Box>
             <AppBar position="static" sx={{ backgroundColor: 'transparent', boxShadow: 'none', marginBottom: 2 }}>
@@ -81,7 +101,7 @@ const AppBarContainer = () => {
                                 onClose={handleCloseUserMenu}
                             >
                                 {settings.map((setting) => (
-                                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                                    <MenuItem key={setting} onClick={() => handleMenuClick(setting)}>
                                         <Typography sx={{ textAlign: 'center' }}>{setting}</Typography>
                                     </MenuItem>
                                 ))}

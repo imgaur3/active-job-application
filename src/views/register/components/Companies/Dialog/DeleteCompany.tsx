@@ -1,8 +1,8 @@
 import React from 'react';
-import WrapperDialog from '../../../../../../src/components/Dialog';
 import { get } from 'lodash';
 import { Typography } from '@mui/material';
-import { Button } from '../../../../../../src/components';
+import WrapperDialog from 'src/components/Dialog/Dialog';
+import { Button } from 'src/components';
 
 type Props = {
     handleClose: () => void;

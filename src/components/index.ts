@@ -12,5 +12,12 @@ import WrappedTypography from './WrappedTypography';
 import Loader from './Loader';
 import Alert from './Alert';
 import FileUploadButton from './UploadButton';
+import ImageIcon from './WrappedImage';
+import AlertDialog from './Alert';
+import FileUpload from "./FileUpload";
+import SwitchButton from './Switch';
+import AutocompleteField from './AutoComplete';
 
-export { InputField, Button, AuthWrapper, Drawer, Tabs, Table, WrapperDialog, AppBarContainer, Tooltip, AreaChart, WrappedTypography, Loader, Alert, FileUploadButton };
+export {
+    InputField, Button, AuthWrapper, Drawer, Tabs, Table, WrapperDialog, AppBarContainer, Tooltip, AreaChart, WrappedTypography, Loader, Alert, FileUploadButton, ImageIcon, AlertDialog, FileUpload, SwitchButton, AutocompleteField
+};

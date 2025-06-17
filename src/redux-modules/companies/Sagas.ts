@@ -1,7 +1,9 @@
 import { call, put, takeLatest } from "redux-saga/effects";
-import { COMPANIES, COMPANIES_COMPLETE, COMPANIES_LOADING, getAllCompaniesError } from "./Actions";
+import { ADD_COMPANY, ADD_COMPANY_LOADING, addCompanyError, COMPANIES, COMPANIES_COMPLETE, COMPANIES_LOADING, EDIT_COMPANY, EDIT_COMPANY_COMPLETE, EDIT_COMPANY_LOADING, editCompanyError, getAllCompaniesError } from "./Actions";
 import { errorMessageHandler } from "src/common/utils/helpers";
-import { getAllCompaniesApi } from "src/services/companies";
+import { addCompanyAPI, editCompanyAPI, getAllCompaniesApi } from "src/services/companies";
+import { ISagaAction } from "src/common/Types";
+import { CompanyPayload } from "./Types";
 
 function* companies() {
     yield put({ type: COMPANIES_LOADING });
@@ -17,6 +19,34 @@ function* companies() {
     }
 }
 
+function* addCompany({ payload }: ISagaAction<CompanyPayload>) {
+    yield put({ type: ADD_COMPANY_LOADING });
+    try {
+        const data = yield call(addCompanyAPI, payload);
+        yield put({ type: COMPANIES_COMPLETE, payload: data })
+    }
+    catch (err) {
+        yield put(addCompanyError({
+            message: errorMessageHandler(err),
+        }))
+    }
+}
+
+function* editCompanyData({ payload }: ISagaAction<CompanyPayload>) {
+    yield put({ type: EDIT_COMPANY_LOADING });
+    try {
+        const data = yield call(editCompanyAPI, payload);
+        yield put({ type: EDIT_COMPANY_COMPLETE, payload: data })
+    }
+    catch (err) {
+        yield put(editCompanyError({
+            message: errorMessageHandler(err),
+        }))
+    }
+}
+
 export default function* CompaniesSagas() {
     yield takeLatest(COMPANIES, companies);
+    yield takeLatest(ADD_COMPANY, addCompany);
+    yield takeLatest(EDIT_COMPANY, editCompanyData);
 }

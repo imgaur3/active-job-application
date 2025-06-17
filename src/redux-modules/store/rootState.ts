@@ -10,5 +10,6 @@ export interface RootState {
   dialog: DialogState;
   users: UserState;
   companies: CompanyState
+  excelReader : GlobalState;
 
 }

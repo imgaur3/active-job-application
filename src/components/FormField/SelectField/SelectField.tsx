@@ -2,9 +2,7 @@ import * as React from 'react';
 import { Theme, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
 import { FieldLabel } from '../FormFieldLabel';
@@ -30,7 +28,7 @@ type MultiSelectChipProps = {
     width?: number | string;
     required?: boolean;
     control: Control<FieldValues>;
-    defaultValue?: string;
+    defaultValue?: string[];
 };
 
 function getStyles(name: string, selected: readonly string[], theme: Theme) {
@@ -67,17 +65,24 @@ const MultiSelectChip: React.FC<MultiSelectChipProps> = ({
                 name={name}
                 control={control}
                 defaultValue={defaultValue || ''}
-                render={({ field: { onChange, value }, fieldState: { error } }) => (
+                render={({ field }) => (
                     <Box sx={{
                         '& .MuiOutlinedInput-input': {
                             padding: 1.1,
                         }
                     }}>
                         <Select
+                            {...field}
                             multiple
                             className='w-full!'
-                            value={selected}
-                            onChange={handleChange}
+                            value={field.value || []}
+                            onChange={e => field.onChange(e.target.value)}
+                            sx={{
+                                '&  .MuiOutlinedInput-input': {
+                                    padding: '10px',
+                                    borderColor: '#000000'
+                                }
+                            }}
                             input={<OutlinedInput label={label} />}
                             renderValue={(selected) => (
                                 <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>

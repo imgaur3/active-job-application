@@ -9,6 +9,7 @@ import {
   Box,
   TableCell,
   Pagination,
+  Typography,
 } from '@mui/material';
 import { get, isEmpty } from 'lodash';
 import { useSelector, shallowEqual } from 'react-redux';
@@ -224,7 +225,10 @@ const CustomizedTable = ({
                       objectFit: 'contain',
                     },
                   }}>
-                    <AutoAwesomeIcon />
+                    <Box className="flex items-center py-10">
+                      <Typography className='text-[#119eb5]'> No Data Found </Typography>
+                      <AutoAwesomeIcon className='ml-5' />
+                    </Box>
                   </Box>
                 </TableCell>
               </TableRow>

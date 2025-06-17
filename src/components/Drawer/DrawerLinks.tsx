@@ -121,56 +121,50 @@ export const DrawerLinks = () => {
   const isOpen = useSelector(GlobalSelectors.sidebarToggle);
 
   const { open } = isOpen;
-  const MenuItem = ({ path, id, text, icon, onClick }: MenuItem) => (
-    <ListItem
-      key={id}
-      disablePadding
-      sx={{ display: 'block' }}>
-      <Link
-        style={{ color: getColor(path) }}
-        to={path}
-      >
-        <ListItemButton
-          sx={{
-            minHeight: 48,
-            px: 2.5,
-            background: 'none',
-            '& .MuiTouchRipple-root .MuiTouchRipple-root': {
-              background: 'red',
-            },
-            '&:hover': {
-              background: '#d1e8ec',
-            },
-            '& .MuiTouchRipple-root': {
-              color: '#11A5BD',
-            }
-          }}
-          onClick={onClick && onClick}
-        >
-          <ListItemIcon
+  const MenuItem = ({ path, id, text, icon, onClick }: MenuItem) => {
+    const isActive = location.pathname === path; 
+    return (
+      <ListItem key={id} disablePadding sx={{ display: 'block' }}>
+        <Link style={{ color: getColor(path), textDecoration: 'none' }} to={path}>
+          <ListItemButton
             sx={{
-              minWidth: 0,
-              mr: open ? 3 : 'auto',
-              marginLeft: '0',
-              '& .MuiListItemIcon-root': {
-                color: '#d1e8ec',
+              minHeight: 48,
+              px: 2.5,
+              background: isActive ? '#d1e8ec' : 'none',
+              '&:hover': {
+                background: '#d1e8ec',
               },
+              '& .MuiTouchRipple-root': {
+                color: '#11A5BD',
+              }
             }}
+            onClick={onClick && onClick}
           >
-            {icon}
-          </ListItemIcon>
-          {open && (
-            <ListItemText
+            <ListItemIcon
               sx={{
-                '& .MuiTypography-root': { fontFamily: fontFamily.primary },
+                minWidth: 0,
+                mr: open ? 3 : 'auto',
+                marginLeft: '0',
+                '& .MuiListItemIcon-root': {
+                  color: '#d1e8ec',
+                },
               }}
-              primary={text}
-            />
-          )}
-        </ListItemButton>
-      </Link>
-    </ListItem>
-  );
+            >
+              {icon}
+            </ListItemIcon>
+            {open && (
+              <ListItemText
+                sx={{
+                  '& .MuiTypography-root': { fontFamily: fontFamily.primary },
+                }}
+                primary={text}
+              />
+            )}
+          </ListItemButton>
+        </Link>
+      </ListItem>
+    );
+  };
   return (
     <List
       sx={{

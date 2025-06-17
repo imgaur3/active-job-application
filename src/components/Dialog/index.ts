@@ -1,2 +1,4 @@
 import WrapperDialog from './Dialog';
-export default WrapperDialog;
+import DialogComponent from './DialogWrapper';
+export { WrapperDialog };
+export default DialogComponent;

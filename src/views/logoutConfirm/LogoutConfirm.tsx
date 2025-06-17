@@ -2,9 +2,10 @@ import React from 'react';
 import { useNavigate } from 'react-router';
 import { AuthActions } from '../../redux-modules/auth';
 import { useDispatch } from 'react-redux';
-import { Button, WrapperDialog } from 'src/components';
+import { Button } from 'src/components';
 import { dialogClose } from 'src/redux-modules/dialog/Actions';
 import { Box, Typography } from '@mui/material';
+import { WrapperDialog } from 'src/components/Dialog';
 
 
 

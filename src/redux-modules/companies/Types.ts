@@ -1,8 +1,24 @@
 export type Company = {
-    serial_no: string,
-    name: string,
-    status: string,
-    type: string,
+    companyName: string,
+    email: string,
+    status: boolean,
+    industry: string[],
+    country: {},
+    platform: string,
+    domain: string,
+    phone: number
+}
+
+export type EditCompanyPayload = {
+    id: string,
+    companyName: string,
+    email: string,
+    status: boolean,
+    industry: string[],
+    country: {},
+    platform: string,
+    domain: string,
+    phone: number
 }
 
 export type CompanyState = {
@@ -11,11 +27,11 @@ export type CompanyState = {
     errorMessage: string,
 }
 
-export type CompanyPayload = {
+export type AddCompanyPayload = {
     company: Company,
 }
 
 export type CompanyAction = {
     type: string;
-    payload?: CompanyPayload;
+    payload?: AddCompanyPayload;
 }

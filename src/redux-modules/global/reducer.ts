@@ -1,5 +1,8 @@
 
 import {
+  EXCELREADER_COMPLETE,
+  EXCELREADER_ERROR,
+  EXCELREADER_LOADING,
   TOGGLE_SIDEBAR,
 } from './Actions';
 import { GlobalAction, GlobalState } from './Types';
@@ -10,7 +13,11 @@ export const GlobalInitialState: GlobalState = {
   },
   signedUrlLoading: false,
   errorMessage: '',
-  urlResponse: null
+  urlResponse: null,
+  isLoading: false,
+  createOrUpdateError: {
+    message: '',
+  },
 };
 
 export default (state = GlobalInitialState, action: GlobalAction) => {
@@ -23,6 +30,23 @@ export default (state = GlobalInitialState, action: GlobalAction) => {
           open: payload,
         },
       };
+    case EXCELREADER_LOADING:
+      return {
+        ...state,
+        isLoading: true,
+        errorMessage: '',
+      }
+    case EXCELREADER_COMPLETE:
+      return {
+        ...state,
+        isLoading: false,
+      }
+    case EXCELREADER_ERROR:
+      return {
+        ...state,
+        isLoading: false,
+        createOrUpdateError: action.payload,
+      }
     default:
       return state;
   }
