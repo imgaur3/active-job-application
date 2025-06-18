@@ -1,7 +1,6 @@
 import React, { ReactNode } from "react";
 import { AppBarContainer, Drawer } from "../components";
 import { Box } from "@mui/material";
-import Notification from "src/views/notification";
 
 type Props = {
   children: ReactNode;
@@ -17,7 +16,6 @@ const MainLayout = ({ children }: Props) => {
           {children}
         </Box>
       </Box>
-      <Notification />
     </Box>
 
   )
