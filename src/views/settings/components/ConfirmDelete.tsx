@@ -1,8 +1,9 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import { Button, WrapperDialog } from 'src/components';
+import { Button } from 'src/components';
 import { useDispatch } from 'react-redux';
 import { dialogClose } from 'src/redux-modules/dialog/Actions';
+import { WrapperDialog } from 'src/components/Dialog';
 
 const ConfirmDelete = () => {
     const dispatch = useDispatch();

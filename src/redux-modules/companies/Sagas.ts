@@ -3,7 +3,7 @@ import { ADD_COMPANY, ADD_COMPANY_LOADING, addCompanyError, COMPANIES, COMPANIES
 import { errorMessageHandler } from "src/common/utils/helpers";
 import { addCompanyAPI, editCompanyAPI, getAllCompaniesApi } from "src/services/companies";
 import { ISagaAction } from "src/common/Types";
-import { CompanyPayload } from "./Types";
+import { AddCompanyPayload, EditCompanyPayload } from "./Types";
 
 function* companies() {
     yield put({ type: COMPANIES_LOADING });
@@ -19,7 +19,7 @@ function* companies() {
     }
 }
 
-function* addCompany({ payload }: ISagaAction<CompanyPayload>) {
+function* addCompany({ payload }: ISagaAction<AddCompanyPayload>) {
     yield put({ type: ADD_COMPANY_LOADING });
     try {
         const data = yield call(addCompanyAPI, payload);
@@ -32,7 +32,7 @@ function* addCompany({ payload }: ISagaAction<CompanyPayload>) {
     }
 }
 
-function* editCompanyData({ payload }: ISagaAction<CompanyPayload>) {
+function* editCompanyData({ payload }: ISagaAction<EditCompanyPayload>) {
     yield put({ type: EDIT_COMPANY_LOADING });
     try {
         const data = yield call(editCompanyAPI, payload);

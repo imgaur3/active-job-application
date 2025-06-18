@@ -5,7 +5,6 @@ import { allUsersDetails } from 'src/redux-modules/users/Selectors';
 import Typography from 'src/components/WrappedTypography';
 import { fontFamily } from 'src/common/utils/constants';
 import { Button, Tooltip } from 'src/components';
-import { useNavigate } from 'react-router';
 import { dialogOpen } from 'src/redux-modules/dialog/Actions';
 import { get } from 'lodash';
 import EditIcon from '@mui/icons-material/Edit';
@@ -17,7 +16,6 @@ import { getAllUsers } from 'src/redux-modules/users/Actions';
 
 const Users = () => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const usersData = useSelector(allUsersDetails);
     const { isLoading, errorMessage } = usersData;
     const listData = get(usersData.users, 'data.users');
@@ -26,15 +24,11 @@ const Users = () => {
         dispatch(getAllUsers());
     }, [dispatch]);
 
-    const handleNavigate = (rowData: string) => {
-        navigate(`/company/details/${rowData}`);
-    };
-
-    const handleEdit = (rowData: User) => {
+    const handleEdit = () => {
         dispatch(dialogOpen('editCompany'));
     };
 
-    const handleDelete = (rowData: User) => {
+    const handleDelete = () => {
         dispatch(dialogOpen('deleteCompany'));
     };
 
@@ -144,13 +138,13 @@ const Users = () => {
         {
             name: 'Action',
             key: 'action',
-            renderCell: (rowData: User) => (
+            renderCell: () => (
                 <Box>
                     <Tooltip title={"Edit"} placement="top">
-                        <EditIcon className='text-[16px] text-[#11A5BD] cursor-pointer mr-[6px]' onClick={() => handleEdit(rowData)} />
+                        <EditIcon className='text-[16px] text-[#11A5BD] cursor-pointer mr-[6px]' onClick={() => handleEdit()} />
                     </Tooltip>
                     <Tooltip title={"Delete"} placement="top">
-                        <DeleteOutlineIcon className='text-[16px] text-[#11A5BD] cursor-pointer' onClick={() => handleDelete(rowData)} />
+                        <DeleteOutlineIcon className='text-[16px] text-[#11A5BD] cursor-pointer' onClick={() => handleDelete()} />
                     </Tooltip>
                 </Box>
             ),

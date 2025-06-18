@@ -117,13 +117,13 @@ const Applications = () => {
     {
       name: 'Action',
       key: 'action',
-      renderCell: (rowData: User) => (
+      renderCell: () => (
         <Box>
           <Tooltip title={"Edit"} placement="top">
-            <EditIcon className='text-[16px] text-[#11A5BD] cursor-pointer mr-[6px]' onClick={() => handleEdit(rowData)} />
+            <EditIcon className='text-[16px] text-[#11A5BD] cursor-pointer mr-[6px]' onClick={() => handleEdit()} />
           </Tooltip>
           <Tooltip title={"Delete"} placement="top">
-            <DeleteOutlineIcon className='text-[16px] text-[#11A5BD] cursor-pointer' onClick={() => handleDelete(rowData)} />
+            <DeleteOutlineIcon className='text-[16px] text-[#11A5BD] cursor-pointer' onClick={() => handleDelete()} />
           </Tooltip>
         </Box>
       ),
@@ -131,11 +131,11 @@ const Applications = () => {
     },
   ];
 
-  const handleEdit = (rowData: User) => {
+  const handleEdit = () => {
     dispatch(dialogOpen('editCompany'));
   };
 
-  const handleDelete = (rowData: User) => {
+  const handleDelete = () => {
     dispatch(dialogOpen('deleteCompany'));
   };
   return (

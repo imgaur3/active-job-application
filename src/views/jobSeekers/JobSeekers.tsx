@@ -141,7 +141,7 @@ const JobSeekers = () => {
         />
       </Box>
       <Table
-        context={colData}
+        context={''}
         columns={columns}
         tableData={colData}
         isLoading={false}

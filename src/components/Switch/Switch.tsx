@@ -15,11 +15,7 @@ interface ControlledSwitchProps {
 }
 
 const SwitchButton: React.FC<ControlledSwitchProps> = ({
-    name,
     control,
-    label,
-    defaultValue = false,
-    disabled = false,
 }) => {
     return (
         <Controller

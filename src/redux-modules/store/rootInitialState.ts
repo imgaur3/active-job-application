@@ -45,13 +45,29 @@ export const rootInitialState: RootState = {
     }
   },
   companies: {
-    company: {
-      serial_no: '',
-      name: '',
-      status: '',
-      type: ''
-    },
     isLoading: false,
-    errorMessage: ''
+    errorMessage: '',
+    company: {
+      companyName: '',
+      email: '',
+      status: false,
+      industry: [],
+      country: undefined,
+      platform: '',
+      domain: '',
+      phone: 0
+    }
+  },
+  excelReader: {
+    sidebar: {
+      open: false
+    },
+    signedUrlLoading: false,
+    errorMessage: '',
+    urlResponse: null,
+    isLoading: false,
+    createOrUpdateError: {
+      message: ''
+    }
   }
 };

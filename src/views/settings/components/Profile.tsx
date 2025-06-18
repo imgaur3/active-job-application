@@ -27,10 +27,6 @@ const Profile = () => {
         console.log('Form Data:', formData);
     };
 
-    const handleChange = () => {
-        // eslint-disable-next-line no-undef
-        console.log('test');
-    }
 
 
     const onClose = () => {

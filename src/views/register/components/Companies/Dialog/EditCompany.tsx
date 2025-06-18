@@ -108,7 +108,7 @@ const EditCompany = ({ title, handleClose, editCompany }: Props) => {
                                 options={['Full-time', 'Part-Time', 'Freelance']}
                                 control={control as unknown as Control<FieldValues>}
                                 selected={selectedIndustry}
-                                onChange={setSelectedIndustry}
+                                onChange={() => setSelectedIndustry}
                                 defaultValue={['Full-time']}
                             />
                         </Grid>

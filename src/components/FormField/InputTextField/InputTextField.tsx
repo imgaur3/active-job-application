@@ -13,8 +13,8 @@ interface FormInputProps extends Omit<TextFieldProps, 'name'> {
   control: Control<FieldValues>;
   placeholder?: string;
   defaultValue?: string;
-  onKeyDown?: (event: React.KeyboardEvent<HTMLDivElement>) => void;
-  onInputChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onKeyDown?: () => void;
+  onInputChange?: () => void;
 }
 
 export const InputTextField = ({
@@ -53,7 +53,7 @@ export const InputTextField = ({
               onKeyDown={onKeyDown}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 onChange(get(e, 'target.value').trimStart());
-                if (onInputChange) onInputChange(e);
+                if (onInputChange) onInputChange();
               }}
               placeholder={placeholder}
               InputProps={{

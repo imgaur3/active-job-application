@@ -3,7 +3,7 @@ import { Theme, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import MenuItem from '@mui/material/MenuItem';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
 import { FieldLabel } from '../FormFieldLabel';
 import { Control, Controller, FieldValues } from 'react-hook-form';
@@ -24,7 +24,7 @@ type MultiSelectChipProps = {
     label: string;
     options: string[];
     selected: string[];
-    onChange: (selected: string[]) => void;
+    onChange: () => void;
     width?: number | string;
     required?: boolean;
     control: Control<FieldValues>;
@@ -45,18 +45,11 @@ const MultiSelectChip: React.FC<MultiSelectChipProps> = ({
     options,
     selected,
     required = false,
-    onChange,
     control,
     defaultValue,
 }) => {
     const theme = useTheme();
 
-    const handleChange = (event: SelectChangeEvent<typeof selected>) => {
-        const {
-            target: { value },
-        } = event;
-        onChange(typeof value === 'string' ? value.split(',') : value);
-    };
 
     return (
         <Box>

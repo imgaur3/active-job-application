@@ -52,7 +52,7 @@ export interface NavTabItem {
 interface NavTabProps {
   tabs: NavTabItem[];
   initialValue?: number;
-  onTabChange?: (index: number) => void;
+  onTabChange?: () => void;
 }
 
 const NavTab: React.FC<NavTabProps> = ({
@@ -71,7 +71,7 @@ const NavTab: React.FC<NavTabProps> = ({
         ))
     ) {
       setValue(newValue);
-      onTabChange?.(newValue);
+      onTabChange?.();
     }
   };
 

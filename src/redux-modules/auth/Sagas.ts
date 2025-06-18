@@ -1,6 +1,6 @@
 import { all, call, fork, put, takeLatest } from 'redux-saga/effects';
 import storage from 'redux-persist/lib/storage';
-import { NavigateFunction, useNavigate } from 'react-router-dom';
+import { NavigateFunction } from 'react-router-dom';
 
 import {
   LOGIN,

@@ -41,7 +41,7 @@ type tableProps = {
   rowsPerPage: number;
   stickyAction?: boolean;
 
-  onPageChange?: (event: React.ChangeEvent<unknown>, page: number) => void;
+  onPageChange?: () => void;
 };
 
 const CustomizedTable = ({

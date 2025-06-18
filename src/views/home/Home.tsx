@@ -31,15 +31,15 @@ const Dashboard = () => {
         </Box>
       </Box>
       <Grid container justifyContent={"space-between"} alignItems="center" className="mt-4">
-        <Grid size={{ lg: 6 }}>
+        <Grid size={{ lg: 6, md: 12, sm: 12, xs: 12 }}>
           <Grid size={{ lg: 12 }} className="flex">
-            <Grid size={{ lg: 6 }}>
+            <Grid size={{ lg: 6, md: 12, sm: 12, xs: 12 }}>
               <Box className="flex items-center justify-between flex-col gap-6">
                 <DashboardCard title={'Users'} count={countObjects(usersList)} subTitle={'Total Users'} handleNaviagte='/all-users' />
                 <DashboardCard title={'Job Seekers'} count={'230'} subTitle={'Total Seekers'} handleNaviagte='/job-seekers' />
               </Box>
             </Grid>
-            <Grid size={{ lg: 6 }}>
+            <Grid size={{ lg: 6, md: 12, sm: 12, xs: 12 }}>
               <Box className="flex items-center justify-between flex-col gap-6">
                 <DashboardCard title={'Applicaitons'} count={'435'} subTitle={'Total Applications'} handleNaviagte='/applications' />
                 <DashboardCard title={'Register'} count={'258'} subTitle={'Total Register'} handleNaviagte='/register-data' />
@@ -47,7 +47,7 @@ const Dashboard = () => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid size={{ lg: 6 }}>
+        <Grid size={{ lg: 6, md: 12, sm: 12, xs: 12 }}>
           <Box className="w-full bg-[#F5F5F5] rounded-3xl flex items-center justify-center h-[calc(100vh-380px)]! p-2">
             <AreaChart />
           </Box>
