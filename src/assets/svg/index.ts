@@ -1,7 +1,6 @@
 import DashboardIcon from './dashboardIcon.svg';
 import LogOut from './logOut.svg';
 import LogoAi from './logoAi.svg';
-import LogIn from './login.svg';
 import JobIcon from './job.svg';
 import CompaniesIcon from './companiesIcon.svg';
 import SettingIcon from './settingIcon.svg';
@@ -22,4 +21,4 @@ import DeleteIcon from './deleteIcon.svg';
 import DocumentIcon from './documentIcon.svg';
 import UploadIcon from './uploadIcon.svg';
 
-export { DashboardIcon, LogOut, LogoAi, LogIn, JobIcon, CompaniesIcon, ApplicationIcon, SettingIcon, SeekersIcon, BuildingIcon, AppIcon, GoogleIcon, ResumeIcon, ActiveApplication, ActiveCompany, ActiveDashboard, ActiveSeeker, ActiveSetting, ActiveRegister, JobSeekerIcon, DeleteIcon, DocumentIcon, UploadIcon };
+export { DashboardIcon, LogOut, LogoAi, JobIcon, CompaniesIcon, ApplicationIcon, SettingIcon, SeekersIcon, BuildingIcon, AppIcon, GoogleIcon, ResumeIcon, ActiveApplication, ActiveCompany, ActiveDashboard, ActiveSeeker, ActiveSetting, ActiveRegister, JobSeekerIcon, DeleteIcon, DocumentIcon, UploadIcon };
