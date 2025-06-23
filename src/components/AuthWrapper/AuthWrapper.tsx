@@ -1,8 +1,6 @@
-import React from 'react';
 import { ReactNode, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { get, isEmpty } from 'lodash';
 
 import { AuthSelectors } from '../../redux-modules/auth';
 
@@ -24,7 +22,7 @@ const AuthWrapper = ({ children }: Props) => {
         navigate('/sign-in');
       }
     }
-  }, [auth, pathname, navigate]);
+  }, [auth.loggedIn, pathname, navigate]);
 
   return <div>{children}</div>;
 };

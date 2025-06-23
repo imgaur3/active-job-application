@@ -1,4 +1,3 @@
-import React from 'react';
 import { RouteObject, useRoutes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { get } from 'lodash';
@@ -18,25 +17,29 @@ import { ResetPasswordRoute } from './views/auth/ResetPassword/Routes';
 
 const App = () => {
   const PublicRoutes: IRoute[] = [SignInRoute, NotFoundRoute, ForgotPasswordRoute, ResetPasswordRoute];
-  const ProtectedRoutes: IRoute[] = [HomeRoute, JobSeekerRoute, ApplicationsRoute, SettingsRoute, RegisterDataRoute, CompaniesRoute, AllUsersRoute];
+  const ProtectedRoutes: IRoute[] = [
+    HomeRoute,
+    JobSeekerRoute,
+    ApplicationsRoute,
+    SettingsRoute,
+    RegisterDataRoute,
+    CompaniesRoute,
+    AllUsersRoute
+  ];
 
   const auth = useSelector(AuthSelectors.auth);
   const loggedIn = get(auth, 'loggedIn');
 
-  console.log(loggedIn, 'loggeIN'); //eslint-disable-line
-
   let appRoutes: RouteObject[];
   if (loggedIn) {
-    appRoutes = createRoutes({ PublicRoutes });
-  } else {
     appRoutes = createRoutes({
-      PublicRoutes,
       ProtectedRoutes,
+      PublicRoutes,
     });
+  } else {
+    appRoutes = createRoutes({ PublicRoutes });
   }
   return useRoutes(appRoutes);
 };
 
-const RouteWrapper = () => <App />;
-
-export default RouteWrapper;
+export default App;
