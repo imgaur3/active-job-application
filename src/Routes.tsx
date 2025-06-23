@@ -14,16 +14,19 @@ import { SettingsRoute } from './views/settings/Routes';
 import { RegisterDataRoute } from './views/register/Routes';
 import { CompaniesRoute } from './views/register/components/Companies/Routes';
 import { AllUsersRoute } from './views/users/Routes';
+import { ResetPasswordRoute } from './views/auth/ResetPassword/Routes';
 
 const App = () => {
-  const PublicRoutes: IRoute[] = [SignInRoute, NotFoundRoute, ForgotPasswordRoute];
+  const PublicRoutes: IRoute[] = [SignInRoute, NotFoundRoute, ForgotPasswordRoute, ResetPasswordRoute];
   const ProtectedRoutes: IRoute[] = [HomeRoute, JobSeekerRoute, ApplicationsRoute, SettingsRoute, RegisterDataRoute, CompaniesRoute, AllUsersRoute];
 
   const auth = useSelector(AuthSelectors.auth);
   const loggedIn = get(auth, 'loggedIn');
 
+  console.log(loggedIn, 'loggeIN'); //eslint-disable-line
+
   let appRoutes: RouteObject[];
-  if (!loggedIn) {
+  if (loggedIn) {
     appRoutes = createRoutes({ PublicRoutes });
   } else {
     appRoutes = createRoutes({

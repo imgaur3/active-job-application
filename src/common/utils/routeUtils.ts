@@ -1,9 +1,8 @@
+import React from 'react';
 import { RouteObject } from 'react-router';
-
 import PublicRouteWrapper from '../../route-wrapper/PublicRouteWrapper';
 import AuthenticatedRouteWrapper from '../../route-wrapper/AuthenticatedRouteWrapper';
 import { IRoute } from '../Types';
-import React from 'react';
 
 type AppRoutes = {
   PublicRoutes?: IRoute[];

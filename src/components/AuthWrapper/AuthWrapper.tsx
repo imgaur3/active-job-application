@@ -18,7 +18,7 @@ const AuthWrapper = ({ children }: Props) => {
 
   useEffect(() => {
     if (pathname === '/') {
-      if (auth.loggedIn == true && !isEmpty(get(auth.user, 'data.access_token'))) {
+      if (auth.loggedIn) {
         navigate('/dashboard');
       } else {
         navigate('/sign-in');
