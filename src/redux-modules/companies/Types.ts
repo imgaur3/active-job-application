@@ -1,8 +1,10 @@
+import { ErrorType } from "../global/Types"
+
 export type Company = {
-    companyName: string,
+    name: string,
     email: string,
     status: boolean,
-    industry: string[],
+    type: string[],
     country: {},
     platform: string,
     domain: string,
@@ -25,13 +27,27 @@ export type CompanyState = {
     company: Company,
     isLoading: boolean,
     errorMessage: string,
+    deleteCompanyError: ErrorType,
 }
 
 export type AddCompanyPayload = {
-    company: Company,
+    name: string,
+    email: string,
+    status: string,
+    type: string,
+    country: string,
+    platform: string,
+    company_domain: string,
+    company_phone: number,
+    cb: () => void;
 }
 
 export type CompanyAction = {
     type: string;
     payload?: AddCompanyPayload;
+}
+
+export type DeleteCompanyPayload = {
+    id: number;
+    cb: () => void;
 }

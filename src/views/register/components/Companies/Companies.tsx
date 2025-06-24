@@ -21,17 +21,19 @@ import ReplyIcon from '@mui/icons-material/Reply';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
 import { EditCompanyPayload } from 'src/redux-modules/companies/Types';
+import { setTablePageIndex } from 'src/redux-modules/pagination/Action';
 
 
 const Companies = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const companyList = useSelector(companies)
-  const [deleteBlog, setDeleteBlog] = useState(null);
+  const companyList = useSelector(companies);
+  const [deleteBlog, setDeleteBlog] = useState({});
   const [editCompany, setEditCompany] = useState({});
 
 
-  const listData = get(companyList.company, 'data.companies');
+  const listData = get(companyList.company, 'data');
+  const companiesList = get(listData, 'data.companies', []);
 
   const handleNavigate = (rowData: string) => {
     navigate(`/company/details/${rowData}`);
@@ -42,8 +44,7 @@ const Companies = () => {
     dispatch(dialogOpen('editCompany'));
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleDelete = (item: any) => {
+  const handleDelete = (item: EditCompanyPayload) => {
     setDeleteBlog(item);
     dispatch(dialogOpen('deleteCompany'));
   };
@@ -154,14 +155,13 @@ const Companies = () => {
     {
       name: 'Action',
       key: 'action',
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      renderCell: (rowData: any) => (
+      renderCell: (rowData: any) => ( //eslint-disable-line
         <Box>
           <Tooltip title={"Edit"} placement="top">
             <EditIcon className='text-[16px] text-[#11A5BD] cursor-pointer mr-[6px]' onClick={() => handleEdit(rowData)} />
           </Tooltip>
           <Tooltip title={"Delete"} placement="top">
-            <DeleteOutlineIcon className='text-[16px] text-[#11A5BD] cursor-pointer' onClick={handleDelete} />
+            <DeleteOutlineIcon className='text-[16px] text-[#11A5BD] cursor-pointer' onClick={() => handleDelete(rowData)} />
           </Tooltip>
         </Box>
       ),
@@ -189,6 +189,11 @@ const Companies = () => {
     const file = new Blob([excelBuffer], { type: 'application/octet-stream' });
     saveAs(file, 'file.xlsx');
   };
+
+  const handlePageChange = (event: unknown, page: number) => {
+    dispatch(setTablePageIndex({ context: 'getAllCompaniesContext', pageIndex: page }));
+  };
+
 
   useEffect(() => {
     dispatch(getAllCompanies())
@@ -223,11 +228,12 @@ const Companies = () => {
         />
       </Box>
       <Table
-        context={''}
+        context={'getAllCompaniesContext'}
         columns={columns}
-        tableData={listData}
+        tableData={companiesList}
         isLoading={false}
-        rowsPerPage={20}
+        rowsPerPage={10}
+        onPageChange={handlePageChange}
       />
       <AddCompany />
       <DeleteCompany

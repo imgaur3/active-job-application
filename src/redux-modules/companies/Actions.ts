@@ -1,4 +1,4 @@
-import { AddCompanyPayload, EditCompanyPayload } from "./Types";
+import { AddCompanyPayload, DeleteCompanyPayload, EditCompanyPayload } from "./Types";
 
 export const COMPANIES = 'COMPANIES';
 export const COMPANIES_LOADING = 'COMPANIES_LOADING';
@@ -15,6 +15,10 @@ export const EDIT_COMPANY_LOADING = 'EDIT_COMPANY_LOADING';
 export const EDIT_COMPANY_COMPLETE = 'EDIT_COMPANY_COMPLETE';
 export const EDIT_COMPANY_ERROR = 'EDIT_COMPANY_ERROR';
 
+export const DELETE_COMPANY = 'DELETE_COMANY';
+export const DELETE_COMPANY_LOADING = 'DELETE_COMPANY_LOADING';
+export const DELETE_COMPANY_COMPLETE = 'DELETE_COMPANY_COMPLETE';
+export const DELETE_COMPANY_ERROR = 'DELETE_COMPANY_ERROR';
 
 export const getAllCompanies = () => {
     return {
@@ -42,7 +46,17 @@ export const editCompanyAction = (payload: EditCompanyPayload) => ({
     payload: payload,
 });
 
-export const editCompanyError = (payload: {message: string}) => ({
+export const editCompanyError = (payload: { message: string }) => ({
     type: EDIT_COMPANY_ERROR,
     payload: payload,
 });
+
+export const deleteCompanyAction = (payload: DeleteCompanyPayload) => ({
+    type: DELETE_COMPANY,
+    payload,
+});
+
+export const deleteCompanyError = (payload: { message: string }) => ({
+    type: DELETE_COMPANY_ERROR,
+    payload
+})

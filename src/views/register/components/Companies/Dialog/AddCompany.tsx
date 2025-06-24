@@ -19,7 +19,7 @@ const AddCompany = () => {
   const dispatch = useDispatch();
   const [selectedIndustry, setSelectedIndustry] = useState<string[]>([]);
   const companyData = useSelector(CompaniesSelectors.companies);
-  const { errorMessage } = companyData;
+  const { errorMessage, isLoading } = companyData;
 
   const onClose = () => {
     dispatch(dialogClose(''));
@@ -33,28 +33,34 @@ const AddCompany = () => {
     industry: [],
   };
 
-
   const { handleSubmit, control, reset, } =
     useForm({
       mode: 'onSubmit',
       resolver: yupResolver(validateCompany),
     });
   const onSubmit = (formData: FieldValues) => {
+    console.log(formData.status, 'data'); //eslint-disable-line
+    const locationLabel = get(formData, 'country.label');
+    const statusName =
+      formData.status === true || formData.status === 'true' ? 'true' : 'false';
     const payload = {
-      company: {
-        companyName: formData.companyName,
-        email: formData.email,
-        status: Array.isArray(formData.status) ? formData.status.join(',') : formData.status,
-        industry: Array.isArray(formData.industry) ? formData.industry.join(',') : formData.industry,
-        country: formData.country,
-        platform: formData.platform,
-        domain: formData.domain,
-        phone: formData.phone,
-      }
+      name: formData.companyName,
+      email: formData.email,
+      status: statusName,
+      type: Array.isArray(formData.industry) ? formData.industry[0] : formData.industry,
+      location: locationLabel,
+      platform: formData.platform,
+      company_domain: formData.domain,
+      company_phone: formData.phone,
+      country: formData.country,
     };
+    const cb = () => {
+      onClose();
+    };
+    dispatch(addCompany({ ...payload, cb }));
 
-    dispatch(addCompany(payload));
   };
+
   return (
     <WrapperDialog
       id='applicationDialog'
@@ -62,13 +68,10 @@ const AddCompany = () => {
       title="Add Company"
       handleClose={onClose}
     >
-      <Box sx={{
-        '*': {
-          paddingBottom: '2px',
-        },
-      }}>
+      <Box>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Typography errorText={get(errorMessage, 'message')} />
+          <Typography>{get(errorMessage, 'message')}</Typography>
           <Grid container spacing={2}>
             <Grid size={{ lg: 6, md: 6, sm: 12, xs: 12 }}>
               <InputTextField
@@ -151,6 +154,7 @@ const AddCompany = () => {
           </Grid>
           <Box className="flex justify-end mt-5">
             <Button
+              isLoading={isLoading}
               label="Submit"
               type="submit"
               className='bg-[#18a0b9] px-5! text-[#ffffff] mr-5!'

@@ -1,9 +1,9 @@
 import { call, put, takeLatest } from "redux-saga/effects";
-import { ADD_COMPANY, ADD_COMPANY_LOADING, addCompanyError, COMPANIES, COMPANIES_COMPLETE, COMPANIES_LOADING, EDIT_COMPANY, EDIT_COMPANY_COMPLETE, EDIT_COMPANY_LOADING, editCompanyError, getAllCompaniesError } from "./Actions";
+import { ADD_COMPANY, ADD_COMPANY_LOADING, addCompanyError, COMPANIES, COMPANIES_COMPLETE, COMPANIES_LOADING, DELETE_COMPANY, DELETE_COMPANY_COMPLETE, DELETE_COMPANY_LOADING, deleteCompanyError, EDIT_COMPANY, EDIT_COMPANY_COMPLETE, EDIT_COMPANY_LOADING, editCompanyError, getAllCompaniesError } from "./Actions";
 import { errorMessageHandler } from "src/common/utils/helpers";
-import { addCompanyAPI, editCompanyAPI, getAllCompaniesApi } from "src/services/companies";
+import { addCompanyAPI, deleteCompanyAPI, editCompanyAPI, getAllCompaniesApi } from "src/services/companies";
 import { ISagaAction } from "src/common/Types";
-import { AddCompanyPayload, EditCompanyPayload } from "./Types";
+import { AddCompanyPayload, DeleteCompanyPayload, EditCompanyPayload } from "./Types";
 
 function* companies() {
     yield put({ type: COMPANIES_LOADING });
@@ -22,8 +22,13 @@ function* companies() {
 function* addCompany({ payload }: ISagaAction<AddCompanyPayload>) {
     yield put({ type: ADD_COMPANY_LOADING });
     try {
-        const data = yield call(addCompanyAPI, payload);
-        yield put({ type: COMPANIES_COMPLETE, payload: data })
+        const { cb } = payload;
+        const res = yield call(addCompanyAPI, payload);
+        yield put({ type: COMPANIES_COMPLETE, payload: res });
+        yield put({ type: COMPANIES })
+        if (cb) {
+            cb();
+        }
     }
     catch (err) {
         yield put(addCompanyError({
@@ -45,8 +50,27 @@ function* editCompanyData({ payload }: ISagaAction<EditCompanyPayload>) {
     }
 }
 
+function* deleteCompanySaga({ payload }: ISagaAction<DeleteCompanyPayload>) {
+    yield put({ type: DELETE_COMPANY_LOADING });
+    try {
+        const { cb } = payload;
+        const res = yield call(deleteCompanyAPI, payload);
+        yield put({ type: DELETE_COMPANY_COMPLETE, paylaod: res });
+        yield put({ type: COMPANIES })
+        if (cb) {
+            cb();
+        }
+    }
+    catch (err) {
+        yield put(deleteCompanyError({
+            message: errorMessageHandler(err),
+        }))
+    }
+}
+
 export default function* CompaniesSagas() {
     yield takeLatest(COMPANIES, companies);
     yield takeLatest(ADD_COMPANY, addCompany);
     yield takeLatest(EDIT_COMPANY, editCompanyData);
+    yield takeLatest(DELETE_COMPANY, deleteCompanySaga);
 }

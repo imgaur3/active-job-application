@@ -1,8 +1,11 @@
 import React from 'react';
 import { get } from 'lodash';
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import WrapperDialog from 'src/components/Dialog/Dialog';
 import { Button } from 'src/components';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteCompanyAction } from 'src/redux-modules/companies/Actions';
+import { CompaniesSelectors } from 'src/redux-modules/companies';
 
 type Props = {
     handleClose: () => void;
@@ -11,15 +14,22 @@ type Props = {
 };
 
 const DeleteCompany = ({ handleClose, title, deleteCompany }: Props) => {
+    const dispatch = useDispatch();
+    const companyData = useSelector(CompaniesSelectors.companies);
+    const { deleteCompanyError } = companyData;
     const onClose = () => {
         handleClose();
     };
 
     const handleDelete = () => {
         const id = get(deleteCompany, 'id');
-        // eslint-disable-next-line no-undef
-        console.log('Delete action triggered for company ID:', id);
+
+        const cb = () => {
+            onClose();
+        };
+        dispatch(deleteCompanyAction({ id, cb }));
     };
+
     return (
         <WrapperDialog
             id={'deleteCompany'}
@@ -27,32 +37,33 @@ const DeleteCompany = ({ handleClose, title, deleteCompany }: Props) => {
             title={title}
             handleClose={onClose}
         >
-            <div>
-                <div>
-                    <Typography
-
-                    />
-                    <div>
+            <Box>
+                <Typography></Typography>
+                <Box>
+                    <Box>
                         <Typography>
-                            {`Are you sure you want to delete ${get(
-                                deleteCompany,
-                                'title',
-                            )}
-                Company?`}
+                            Are you sure you want to delete{' '}
+                            <span style={{ color: '#18a0b9' }}>
+                                {get(deleteCompany, 'name')}
+                            </span>{' '}
+                            Company?
                         </Typography>
-                    </div>
-                    <div>
+                    </Box>
+                    <Box className="flex justify-end items-center mt-6">
                         <Button
-                            label={'delete'}
+                            label="Delete"
+                            type="submit"
+                            className='bg-[#18a0b9] px-5! text-[#ffffff] mr-5!'
                             onClick={handleDelete}
                         />
                         <Button
                             label="Cancel"
-                            onClick={() => onClose()}
+                            onClick={onClose}
+                            className='border-[1px] border-[#18a0b9] px-5! text-[#18a0b9]'
                         />
-                    </div>
-                </div>
-            </div>
+                    </Box>
+                </Box>
+            </Box>
         </WrapperDialog>
     )
 }

@@ -1,19 +1,22 @@
-import { ADD_COMPANY_ERROR, ADD_COMPANY_LOADING, ADD_COMPANY_SUCCESS, COMPANIES, COMPANIES_COMPLETE, COMPANIES_ERROR, COMPANIES_LOADING, EDIT_COMPANY_ERROR, EDIT_COMPANY_LOADING, EDIT_COMPANY_COMPLETE } from "./Actions";
+import { ADD_COMPANY_ERROR, ADD_COMPANY_LOADING, ADD_COMPANY_SUCCESS, COMPANIES, COMPANIES_COMPLETE, COMPANIES_ERROR, COMPANIES_LOADING, EDIT_COMPANY_ERROR, EDIT_COMPANY_LOADING, EDIT_COMPANY_COMPLETE, DELETE_COMPANY_LOADING, DELETE_COMPANY_COMPLETE, DELETE_COMPANY_ERROR } from "./Actions";
 import { CompanyAction, CompanyState } from "./Types";
 
 export const companiesInitialState: CompanyState = {
     company: {
-        companyName: "",
+        name: "",
         email: "",
         status: false,
-        industry: [],
         country: undefined,
         platform: "",
         domain: "",
-        phone: 0
+        phone: 0,
+        type: [],
     },
     isLoading: false,
-    errorMessage: ""
+    errorMessage: "",
+    deleteCompanyError: {
+        message: ""
+    }
 }
 
 export default (state = companiesInitialState, action: CompanyAction) => {
@@ -77,6 +80,24 @@ export default (state = companiesInitialState, action: CompanyAction) => {
                 ...state,
                 isLoading: false,
                 errorMessage: action.payload,
+            }
+        case DELETE_COMPANY_LOADING:
+            return {
+                ...state,
+                isLoading: true,
+                errorMessage: '',
+            }
+        case DELETE_COMPANY_COMPLETE:
+            return {
+                ...state,
+                isLoading: false,
+                paylaod: action.payload
+            }
+        case DELETE_COMPANY_ERROR:
+            return {
+                ...state,
+                isLoading: false,
+                deleteCompanyError: action.payload,
             }
         default:
             return state;

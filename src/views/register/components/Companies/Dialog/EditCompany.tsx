@@ -68,6 +68,7 @@ const EditCompany = ({ title, handleClose, editCompany }: Props) => {
             setValue('status', get(editCompany, 'status'))
         }
     }, [editCompany, setValue]);
+
     return (
         <WrapperDialog
             id='editCompany'

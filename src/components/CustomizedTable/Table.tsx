@@ -40,8 +40,7 @@ type tableProps = {
   footerRow?: string;
   rowsPerPage: number;
   stickyAction?: boolean;
-
-  onPageChange?: () => void;
+  onPageChange?: (event: React.ChangeEvent<unknown>, value: number) => void;
 };
 
 const CustomizedTable = ({
@@ -115,7 +114,7 @@ const CustomizedTable = ({
           fontFamily: fontFamily.primary,
         },
         overflow: 'auto',
-        height: 'calc(100vh - 280px)',
+        height: 'calc(100vh - 350px)',
         '& .MuiTableContainer-root': {
           height: '100%',
         },
@@ -254,9 +253,8 @@ const CustomizedTable = ({
             color="primary"
             size="small"
             sx={{
-              marginTop: 20,
               '& .MuiPaginationItem-icon': {
-                color: '#404040',
+                color: '#11A5BD',
               },
             }}
           />

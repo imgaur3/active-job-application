@@ -1,4 +1,4 @@
-import { AddCompanyPayload, EditCompanyPayload } from "src/redux-modules/companies/Types";
+import { AddCompanyPayload, DeleteCompanyPayload, EditCompanyPayload } from "src/redux-modules/companies/Types";
 import { secureApi } from "../../src/api/Axios";
 
 
@@ -12,6 +12,10 @@ export const addCompanyAPI = (payload: AddCompanyPayload) => {
 
 export const editCompanyAPI = (payload: EditCompanyPayload) => {
     const { id } = payload;
-    console.log(payload, 'test'); //eslint-disable-line
     return secureApi.post(`/companies/${id}`, payload);
+}
+
+export const deleteCompanyAPI = (payload: DeleteCompanyPayload) => {
+    const { id } = payload;
+    return secureApi.delete(`/compansssies/${id}`);
 }
