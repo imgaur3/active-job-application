@@ -12,17 +12,12 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import Table from '../../components/CustomizedTable/Table';
 import { User } from 'src/redux-modules/auth/Types';
-import { getAllUsers } from 'src/redux-modules/users/Actions';
 
 const Users = () => {
     const dispatch = useDispatch();
     const usersData = useSelector(allUsersDetails);
     const { isLoading, errorMessage } = usersData;
     const listData = get(usersData.users, 'data.users');
-
-    useEffect(() => {
-        dispatch(getAllUsers());
-    }, [dispatch]);
 
     const handleEdit = () => {
         dispatch(dialogOpen('editCompany'));

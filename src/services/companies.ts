@@ -17,5 +17,5 @@ export const editCompanyAPI = (payload: EditCompanyPayload) => {
 
 export const deleteCompanyAPI = (payload: DeleteCompanyPayload) => {
     const { id } = payload;
-    return secureApi.delete(`/compansssies/${id}`);
+    return secureApi.delete(`/companies/${id}`);
 }

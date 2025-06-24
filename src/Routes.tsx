@@ -14,9 +14,12 @@ import { RegisterDataRoute } from './views/register/Routes';
 import { CompaniesRoute } from './views/register/components/Companies/Routes';
 import { AllUsersRoute } from './views/users/Routes';
 import { ResetPasswordRoute } from './views/auth/ResetPassword/Routes';
+import { useStoreLeaveDateEffect } from './navigation';
+
 
 const App = () => {
   const PublicRoutes: IRoute[] = [SignInRoute, NotFoundRoute, ForgotPasswordRoute, ResetPasswordRoute];
+    useStoreLeaveDateEffect();
   const ProtectedRoutes: IRoute[] = [
     HomeRoute,
     JobSeekerRoute,

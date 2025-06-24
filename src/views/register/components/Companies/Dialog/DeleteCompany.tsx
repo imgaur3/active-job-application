@@ -4,7 +4,7 @@ import { Box, Typography } from '@mui/material';
 import WrapperDialog from 'src/components/Dialog/Dialog';
 import { Button } from 'src/components';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteCompanyAction } from 'src/redux-modules/companies/Actions';
+import { deleteCompanyAction, deleteCompanyError } from 'src/redux-modules/companies/Actions';
 import { CompaniesSelectors } from 'src/redux-modules/companies';
 
 type Props = {
@@ -16,9 +16,10 @@ type Props = {
 const DeleteCompany = ({ handleClose, title, deleteCompany }: Props) => {
     const dispatch = useDispatch();
     const companyData = useSelector(CompaniesSelectors.companies);
-    const { deleteCompanyError } = companyData;
+    const { isLoading } = companyData;
     const onClose = () => {
         handleClose();
+        dispatch(deleteCompanyError({ message: '' }));
     };
 
     const handleDelete = () => {
@@ -38,7 +39,13 @@ const DeleteCompany = ({ handleClose, title, deleteCompany }: Props) => {
             handleClose={onClose}
         >
             <Box>
-                <Typography></Typography>
+                {get(companyData, 'deleteCompanyError.message') && (
+                    <Box className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
+                        <Box className="block sm:inline">
+                            {get(companyData, 'deleteCompanyError.message')}
+                        </Box>
+                    </Box>
+                )}
                 <Box>
                     <Box>
                         <Typography>
@@ -51,6 +58,7 @@ const DeleteCompany = ({ handleClose, title, deleteCompany }: Props) => {
                     </Box>
                     <Box className="flex justify-end items-center mt-6">
                         <Button
+                            isLoading={isLoading}
                             label="Delete"
                             type="submit"
                             className='bg-[#18a0b9] px-5! text-[#ffffff] mr-5!'

@@ -13,7 +13,6 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import DeleteCompany from './Dialog/DeleteCompany';
 import EditCompany from './Dialog/EditCompany';
-import { getAllCompanies } from 'src/redux-modules/companies/Actions';
 import { companies } from 'src/redux-modules/companies/Selectors';
 import UploadIcon from '@mui/icons-material/Upload';
 import ImportData from './Dialog/ImportData';
@@ -190,14 +189,9 @@ const Companies = () => {
     saveAs(file, 'file.xlsx');
   };
 
-  const handlePageChange = (event: unknown, page: number) => {
-    dispatch(setTablePageIndex({ context: 'getAllCompaniesContext', pageIndex: page }));
+  const handlePageChange = (_event: any, page: number) => { //eslint-disable-line
+    dispatch(setTablePageIndex({ context: 'companyContext', pageIndex: page }));
   };
-
-
-  useEffect(() => {
-    dispatch(getAllCompanies())
-  }, [dispatch])
 
   return (
     <Box>
@@ -228,11 +222,11 @@ const Companies = () => {
         />
       </Box>
       <Table
-        context={'getAllCompaniesContext'}
+        context={'companyContext'}
         columns={columns}
         tableData={companiesList}
         isLoading={false}
-        rowsPerPage={10}
+        rowsPerPage={5}
         onPageChange={handlePageChange}
       />
       <AddCompany />

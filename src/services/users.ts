@@ -2,5 +2,5 @@ import { secureApi } from "../../src/api/Axios";
 
 
 export const getAllUsersApi = () => {
-    return secureApi.get('/users');
+    return secureApi.get('/profile');
 }
