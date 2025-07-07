@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from 'react';
 import {
   Table,
@@ -34,13 +33,13 @@ type ArrayType = {
 
 type tableProps = {
   context?: string;
-  columns: any[];
-  tableData: any[];
+  columns: any[]; //eslint-disable-line
+  tableData: any[]; //eslint-disable-line
   isLoading: boolean;
   footerRow?: string;
   rowsPerPage: number;
   stickyAction?: boolean;
-  onPageChange?: (event: React.ChangeEvent<unknown>, value: number) => void;
+  onPageChange: (event: React.ChangeEvent<unknown>, page: number) => void;
 };
 
 const CustomizedTable = ({
@@ -52,27 +51,26 @@ const CustomizedTable = ({
   onPageChange,
   stickyAction = false,
 }: tableProps) => {
-  const paginationData = (state: any, context: string) =>
+  const paginationData = (state: any, context: string) => //eslint-disable-line
     state.pagination?.[context] ?? {};
   const [paginatedListData, setPaginatedListData] = useState<number[]>([]);
-  const paginationStore = (state: any) => paginationData(state, context ?? '');
+  const paginationStore = (state: any) => paginationData(state, context ?? ''); //eslint-disable-line
   const paginationStoreData = useSelector(paginationStore, shallowEqual);
   const pageCount = Math.ceil(tableData.length / rowsPerPage);
+  const [pageIndex, setPageIndex] = useState(1);
+
 
   useEffect(() => {
-    const pageIndex = get(paginationStoreData, 'pageIndex', 1);
     const startIndex = (pageIndex - 1) * rowsPerPage;
     const endIndex = startIndex + rowsPerPage;
-    const paginatedData =
-      !isEmpty(tableData) && tableData.slice(startIndex, endIndex);
+    const paginatedData = tableData.slice(startIndex, endIndex);
     setPaginatedListData(paginatedData);
-
-  }, [paginationStoreData, rowsPerPage, tableData]);
+  }, [pageIndex, rowsPerPage, tableData]);
 
   const headers = (array: ArrayType[]) => {
     return (
       <>
-        {array.map((i: any, n: number) => {
+        {array.map((i: any, n: number) => { //eslint-disable-line
           return (
             <TableCell
               key={n}
@@ -105,6 +103,15 @@ const CustomizedTable = ({
         })}
       </>
     );
+  };
+
+  const handlePageChange = (event, value) => {
+    setPageIndex(value);
+    const startIndex = (value - 1) * rowsPerPage;
+    const endIndex = startIndex + rowsPerPage;
+    const paginatedData = tableData.slice(startIndex, endIndex);
+    setPaginatedListData(paginatedData);
+    onPageChange(event, value);
   };
 
   return (
@@ -161,7 +168,7 @@ const CustomizedTable = ({
                 </TableCell>
               </TableRow>
             ) : !isEmpty(paginatedListData) ? (
-              paginatedListData.map((rowItem: any, index: number) => (
+              paginatedListData.map((rowItem: any, index: number) => ( //eslint-disable-line
                 <TableRow
                   hover
                   key={`row_${rowItem?.id}_${index}`}
@@ -178,7 +185,7 @@ const CustomizedTable = ({
                     },
                   }}
                 >
-                  {columns.map((columnItem: any, colIndex: number) => (
+                  {columns.map((columnItem: any, colIndex: number) => ( //eslint-disable-line
                     <React.Fragment key={`col_${index}_${colIndex}`}>
                       {columnItem.key && (
                         <TableCell
@@ -244,12 +251,8 @@ const CustomizedTable = ({
         }}>
           <Pagination
             count={pageCount}
-            page={
-              get(paginationStoreData, 'pageIndex')
-                ? get(paginationStoreData, 'pageIndex')
-                : 1
-            }
-            onChange={onPageChange}
+            page={get(paginationStoreData, 'pageIndex')}
+            onChange={handlePageChange}
             color="primary"
             size="small"
             sx={{
