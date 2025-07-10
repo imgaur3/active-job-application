@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import { Box } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { allUsersDetails } from 'src/redux-modules/users/Selectors';
@@ -12,13 +11,14 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import Table from '../../components/CustomizedTable/Table';
 import { User } from 'src/redux-modules/auth/Types';
+import { setTablePageIndex } from 'src/redux-modules/pagination/Action';
 
 const Users = () => {
     const dispatch = useDispatch();
     const usersData = useSelector(allUsersDetails);
     const { isLoading, errorMessage } = usersData;
     const listData = get(usersData.users, 'data.users');
-
+    console.log('listData', usersData); //eslint-disable-line
     const handleEdit = () => {
         dispatch(dialogOpen('editCompany'));
     };
@@ -26,6 +26,11 @@ const Users = () => {
     const handleDelete = () => {
         dispatch(dialogOpen('deleteCompany'));
     };
+
+    const handlePageChange = (_event: any, page: number) => { //eslint-disable-line
+        dispatch(setTablePageIndex({ context: 'all-users-table', pageIndex: page }));
+    };
+
 
     const columns = [
         {
@@ -154,7 +159,7 @@ const Users = () => {
     return (
         <Box className="bg-[#d1e8ec] mt-4 rounded-3xl p-6">
             <Box>
-                <Typography>{errorMessage}</Typography>
+                <Typography errorText={get(errorMessage, 'message')} />
             </Box>
             <Box className="w-full flex justify-between text-right mb-4 items-center">
                 <Typography className='text-[#11A5BD] text-[18px]!' sx={{ fontFamily: fontFamily.primary }}>Companies and thier details</Typography>
@@ -175,6 +180,7 @@ const Users = () => {
                 tableData={listData}
                 isLoading={isLoading}
                 rowsPerPage={20}
+                onPageChange={handlePageChange}
             />
         </Box>
     )

@@ -2,7 +2,7 @@ import { RouteObject, useRoutes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { get } from 'lodash';
 
-import { HomeRoute, NotFoundRoute, SignInRoute } from './views';
+import { CompaniesDetailRoute, HomeRoute, NotFoundRoute, SignInRoute } from './views';
 import { AuthSelectors } from './redux-modules/auth';
 import { IRoute } from './common/Types';
 import createRoutes from './common/utils/routeUtils';
@@ -27,7 +27,8 @@ const App = () => {
     SettingsRoute,
     RegisterDataRoute,
     CompaniesRoute,
-    AllUsersRoute
+    AllUsersRoute,
+    CompaniesDetailRoute
   ];
 
   const auth = useSelector(AuthSelectors.auth);

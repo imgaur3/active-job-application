@@ -58,14 +58,18 @@ const CustomizedTable = ({
   const paginationStoreData = useSelector(paginationStore, shallowEqual);
   const pageCount = Math.ceil(tableData.length / rowsPerPage);
   const [pageIndex, setPageIndex] = useState(1);
+  const [hasUpdated, setHasUpdated] = useState(false);
 
 
   useEffect(() => {
-    const startIndex = (pageIndex - 1) * rowsPerPage;
-    const endIndex = startIndex + rowsPerPage;
-    const paginatedData = tableData.slice(startIndex, endIndex);
-    setPaginatedListData(paginatedData);
-  }, [pageIndex, rowsPerPage, tableData]);
+    if (!hasUpdated) {
+      const startIndex = (pageIndex - 1) * rowsPerPage;
+      const endIndex = startIndex + rowsPerPage;
+      const newPaginatedData = tableData.slice(startIndex, endIndex);
+      setPaginatedListData(newPaginatedData);
+      setHasUpdated(true);
+    }
+  }, [hasUpdated, pageIndex, rowsPerPage, tableData]);
 
   const headers = (array: ArrayType[]) => {
     return (

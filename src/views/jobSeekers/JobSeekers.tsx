@@ -10,6 +10,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { Button, Tooltip } from '../../components/index';
 import Table from '../../components/CustomizedTable/Table';
+import { setTablePageIndex } from 'src/redux-modules/pagination/Action';
 
 
 const JobSeekers = () => {
@@ -27,6 +28,11 @@ const JobSeekers = () => {
   const handleDelete = () => {
     dispatch(dialogOpen('deleteCompany'));
   };
+
+    const handlePageChange = (_event: any, page: number) => { //eslint-disable-line
+      dispatch(setTablePageIndex({ context: 'companyContext', pageIndex: page }));
+    };
+  
 
 
   const colData = [
@@ -146,6 +152,7 @@ const JobSeekers = () => {
         tableData={colData}
         isLoading={false}
         rowsPerPage={20}
+        onPageChange={handlePageChange}
       />
     </Box>
   )

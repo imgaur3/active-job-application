@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import Table from '../../../../components/CustomizedTable/Table';
 import { useNavigate } from 'react-router';
 import { get } from 'lodash';
@@ -34,8 +34,9 @@ const Companies = () => {
   const listData = get(companyList.company, 'data');
   const companiesList = get(listData, 'data.companies', []);
 
-  const handleNavigate = (rowData: string) => {
-    navigate(`/company/details/${rowData}`);
+  const handleNavigate = (rowData: {}) => {
+    const id = get(rowData, 'id');
+    navigate(`/company/details/${id}`);
   };
 
   const handleEdit = (item: EditCompanyPayload) => {
@@ -69,11 +70,11 @@ const Companies = () => {
       name: 'Company Name',
       key: 'name',
       renderCell: (rowData: string) => (
-        <p
+        <span
           onClick={() => handleNavigate(rowData)}
         >
-          {get(rowData, 'name')}
-        </p>
+          <Typography className='hover:cursor-pointer text-[#11A5BD]'>{get(rowData, 'name')}</Typography>
+        </span>
       ),
       textAlign: 'left',
     },
@@ -178,10 +179,10 @@ const Companies = () => {
 
 
   const handleExport = () => {
-    if (!listData) {
+    if (!companiesList || !companiesList.length) {
       return;
     }
-    const worksheet = XLSX.utils.json_to_sheet(listData);
+    const worksheet = XLSX.utils.json_to_sheet(companiesList);
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, 'Companies');
     const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
