@@ -11,7 +11,7 @@ import { allUsersDetails } from 'src/redux-modules/users/Selectors';
 
 const Dashboard = () => {
   const usersData = useSelector(allUsersDetails);
-  const usersList: User[] = (get(usersData.users, 'data.users'));
+  console.log('usersList', usersData); //eslint-disable-line
 
   const countObjects = (array) => {
     return Array.isArray(array) ? array.length : 0;
@@ -35,7 +35,7 @@ const Dashboard = () => {
           <Grid size={{ lg: 12 }} className="flex">
             <Grid size={{ lg: 6, md: 12, sm: 12, xs: 12 }}>
               <Box className="flex items-center justify-between flex-col gap-6">
-                <DashboardCard title={'Users'} count={countObjects(usersList)} subTitle={'Total Users'} handleNaviagte='/all-users' />
+                <DashboardCard title={'Users'} count={countObjects(usersData.users)} subTitle={'Total Users'} handleNaviagte='/all-users' />
                 <DashboardCard title={'Job Seekers'} count={'230'} subTitle={'Total Seekers'} handleNaviagte='/job-seekers' />
               </Box>
             </Grid>

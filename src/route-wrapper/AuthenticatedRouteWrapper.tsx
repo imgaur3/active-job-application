@@ -15,8 +15,6 @@ const AuthenticatedRouteWrapper = ({
 }: RouteWrapper) => {
   const auth = useSelector(AuthSelectors.auth);
   const loggedIn = get(auth, 'loggedIn');
-  console.log(loggedIn, 'check'); //eslint-disable-line
-
   const RouteWrapper = () => {
     return (
       <Layout>

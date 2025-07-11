@@ -11,6 +11,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { Button, Tooltip } from '../../components/index';
 import Table from '../../components/CustomizedTable/Table';
 import { setTablePageIndex } from 'src/redux-modules/pagination/Action';
+import AddJobSeeker from './components/AddJobSeeker';
 
 
 const JobSeekers = () => {
@@ -29,38 +30,10 @@ const JobSeekers = () => {
     dispatch(dialogOpen('deleteCompany'));
   };
 
-    const handlePageChange = (_event: any, page: number) => { //eslint-disable-line
-      dispatch(setTablePageIndex({ context: 'companyContext', pageIndex: page }));
-    };
-  
+  const handlePageChange = (_event: any, page: number) => { //eslint-disable-line
+    dispatch(setTablePageIndex({ context: 'companyContext', pageIndex: page }));
+  };
 
-
-  const colData = [
-    {
-      id: '1',
-      title: 'Tata Consultancy Services',
-      description: 'Pune, India',
-      status: 'Active',
-    },
-    {
-      id: '2',
-      title: 'Infosys Technologies',
-      description: 'Hydrabad, India',
-      status: 'Inactive',
-    },
-    {
-      id: '3',
-      title: 'Wipro Technologies',
-      description: 'Pune, India',
-      status: 'inactive',
-    },
-    {
-      id: '4',
-      title: 'Tech Mahindra',
-      description: 'Mumbai, India',
-      status: 'Active',
-    },
-  ];
 
   const columns = [
     {
@@ -129,32 +102,35 @@ const JobSeekers = () => {
   ];
 
   const handleOpen = () => {
-    dispatch(dialogOpen('applicationDialog'));
+    dispatch(dialogOpen('addJobSeeker'));
   };
   return (
-    <Box className="bg-[#d1e8ec] mt-4 rounded-3xl p-6">
-      <Box className="w-full flex justify-between text-right mb-4 items-center">
-        <Typography className='text-[#11A5BD] text-[18px]!' sx={{ fontFamily: fontFamily.primary }}>Companies and thier details</Typography>
-        <Button
-          label='Add Company'
-          type="submit"
+    <>
+      <Box className="bg-[#d1e8ec] mt-4 rounded-3xl p-6">
+        <Box className="w-full flex justify-between text-right mb-4 items-center">
+          <Typography className='text-[#11A5BD] text-[18px]!' sx={{ fontFamily: fontFamily.primary }}>Companies and thier details</Typography>
+          <Button
+            label='Add Job Seeker'
+            type="submit"
+            isLoading={false}
+            disabled={false}
+            onClick={handleOpen}
+            className='bg-[#11A5BD]! text-[#FFFFFF] text-[12px]'
+            endIcon={<AddCircleOutlineIcon className='text-[20px]!' />}
+            sx={{ fontFamily: fontFamily.primary }}
+          />
+        </Box>
+        <Table
+          context={'job-seekers'}
+          columns={columns}
+          tableData={[]}
           isLoading={false}
-          disabled={false}
-          onClick={handleOpen}
-          className='bg-[#11A5BD]! text-[#FFFFFF] text-[12px]'
-          endIcon={<AddCircleOutlineIcon className='text-[20px]!' />}
-          sx={{ fontFamily: fontFamily.primary }}
+          rowsPerPage={20}
+          onPageChange={handlePageChange}
         />
       </Box>
-      <Table
-        context={''}
-        columns={columns}
-        tableData={colData}
-        isLoading={false}
-        rowsPerPage={20}
-        onPageChange={handlePageChange}
-      />
-    </Box>
+      <AddJobSeeker />
+    </>
   )
 };
 

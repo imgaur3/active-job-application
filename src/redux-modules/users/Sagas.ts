@@ -1,7 +1,7 @@
 import { call, put, takeLatest } from "redux-saga/effects";
 import { GET_ALL_USERS, GET_ALL_USERS_COMPLETE, GET_ALL_USERS_LOADING, getAllUsersError } from "./Actions";
-import { getAllUsersApi } from "../../../src/services/users";
 import { errorMessageHandler } from "../../../src/common/utils/helpers";
+import { getAllUsersApi } from "src/services/users";
 
 
 function* allUsers() {

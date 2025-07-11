@@ -39,7 +39,6 @@ const AddCompany = () => {
       resolver: yupResolver(validateCompany),
     });
   const onSubmit = (formData: FieldValues) => {
-    console.log(formData.status, 'data'); //eslint-disable-line
     const locationLabel = get(formData, 'country.label');
     const statusName =
       formData.status === true || formData.status === 'true' ? 'true' : 'false';

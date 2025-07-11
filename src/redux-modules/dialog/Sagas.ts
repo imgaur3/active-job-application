@@ -8,8 +8,6 @@ function* DialogOpenAsync(data: any) {
   const state: string[] = yield select(
     (state: RootState) => state.dialog.openModelIds,
   );
-  // eslint-disable-next-line no-undef
-  console.log("saga file", payload, 'state', state);
   const newList = [...state, payload];
   yield put({ type: DIALOG_OPEN, payload: newList });
 }

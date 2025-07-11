@@ -18,7 +18,6 @@ const Users = () => {
     const usersData = useSelector(allUsersDetails);
     const { isLoading, errorMessage } = usersData;
     const listData = get(usersData.users, 'data.users');
-    console.log('listData', usersData); //eslint-disable-line
     const handleEdit = () => {
         dispatch(dialogOpen('editCompany'));
     };

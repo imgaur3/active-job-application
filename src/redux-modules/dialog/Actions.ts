@@ -4,8 +4,6 @@ export const DIALOG_OPEN_ASYNC = 'DIALOG_OPEN_ASYNC';
 export const DIALOG_CLOSE_ASYNC = 'DIALOG_CLOSE_ASYNC';
 
 export const dialogOpen = (payload: string) => {    
-    // eslint-disable-next-line no-undef
-    console.log('action file', payload);
     return {
         type: DIALOG_OPEN_ASYNC,
         payload,
