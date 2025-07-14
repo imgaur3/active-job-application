@@ -6,14 +6,14 @@ type Props = {
     title: string;
     count: number | string;
     subTitle?: string;
-    handleNaviagte?: string;
+    handleNavigate?: string;
 }
 
 const DashboardCard = (props: Props) => {
         const navigate = useNavigate();
          const handleClick = () => {
-        if (props.handleNaviagte) {
-            navigate(props.handleNaviagte);
+        if (props.handleNavigate) {
+            navigate(props.handleNavigate);
         }
     };
     return (

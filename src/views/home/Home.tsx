@@ -3,16 +3,12 @@ import { Box, Grid, Typography, } from "@mui/material";
 import { JobSeeker } from "../../assets/images";
 import DashboardCard from './components/DashboardCard';
 import { AreaChart } from '../../../src/components';
-import { User } from 'src/redux-modules/auth/Types';
-import { get } from 'lodash';
 import { useSelector } from 'react-redux';
 import { allUsersDetails } from 'src/redux-modules/users/Selectors';
 
 
 const Dashboard = () => {
   const usersData = useSelector(allUsersDetails);
-  console.log('usersList', usersData); //eslint-disable-line
-
   const countObjects = (array) => {
     return Array.isArray(array) ? array.length : 0;
   };
@@ -35,14 +31,14 @@ const Dashboard = () => {
           <Grid size={{ lg: 12 }} className="flex">
             <Grid size={{ lg: 6, md: 12, sm: 12, xs: 12 }}>
               <Box className="flex items-center justify-between flex-col gap-6">
-                <DashboardCard title={'Users'} count={countObjects(usersData.users)} subTitle={'Total Users'} handleNaviagte='/all-users' />
-                <DashboardCard title={'Job Seekers'} count={'230'} subTitle={'Total Seekers'} handleNaviagte='/job-seekers' />
+                <DashboardCard title={'Users'} count={countObjects(usersData.users)} subTitle={'Total Users'} handleNavigate='/all-users' />
+                <DashboardCard title={'Job Seekers'} count={'230'} subTitle={'Total Seekers'} handleNavigate='/job-seekers' />
               </Box>
             </Grid>
             <Grid size={{ lg: 6, md: 12, sm: 12, xs: 12 }}>
               <Box className="flex items-center justify-between flex-col gap-6">
-                <DashboardCard title={'Applicaitons'} count={'435'} subTitle={'Total Applications'} handleNaviagte='/applications' />
-                <DashboardCard title={'Register'} count={'258'} subTitle={'Total Register'} handleNaviagte='/register-data' />
+                <DashboardCard title={'Applicaitons'} count={'435'} subTitle={'Total Applications'} handleNavigate='/applications' />
+                <DashboardCard title={'Register'} count={'258'} subTitle={'Total Register'} handleNavigate='/register-data' />
               </Box>
             </Grid>
           </Grid>

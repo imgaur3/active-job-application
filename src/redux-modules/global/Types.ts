@@ -24,11 +24,6 @@ export type GlobalPayload = {
   data: unknown;
 };
 
-export interface CalendarPayload {
-  oAuthAccessToken: string | undefined;
-  refreshToken: string | undefined;
-}
-
 export type ExcelSheetPayload = {
   file: Record<string, unknown>;
   cb: () => void;
