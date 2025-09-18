@@ -24,6 +24,7 @@ const DeleteCompany = ({ handleClose, title, deleteCompany }: Props) => {
 
     const handleDelete = () => {
         const id = get(deleteCompany, 'id');
+        console.log('id', deleteCompany); //eslint-disable-line
 
         const cb = () => {
             onClose();

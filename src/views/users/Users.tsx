@@ -12,12 +12,13 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import Table from '../../components/CustomizedTable/Table';
 import { User } from 'src/redux-modules/auth/Types';
 import { setTablePageIndex } from 'src/redux-modules/pagination/Action';
+import AddUser from './Dialog/AddUser';
 
 const Users = () => {
     const dispatch = useDispatch();
     const usersData = useSelector(allUsersDetails);
     const { isLoading, errorMessage } = usersData;
-    const listData = get(usersData.users, 'data.users');
+    const listData = get(usersData.users, 'data');
     const handleEdit = () => {
         dispatch(dialogOpen('editCompany'));
     };
@@ -152,36 +153,39 @@ const Users = () => {
     ];
 
     const handleOpen = () => {
-        dispatch(dialogOpen('applicationDialog'));
+        dispatch(dialogOpen('userAdd'));
     };
 
     return (
-        <Box className="bg-[#d1e8ec] mt-4 rounded-3xl p-6">
-            <Box>
-                <Typography errorText={get(errorMessage, 'message')} />
-            </Box>
-            <Box className="w-full flex justify-between text-right mb-4 items-center">
-                <Typography className='text-[#11A5BD] text-[18px]!' sx={{ fontFamily: fontFamily.primary }}>Companies and thier details</Typography>
-                <Button
-                    label='Add Company'
-                    type="submit"
-                    isLoading={false}
-                    disabled={false}
-                    onClick={handleOpen}
-                    className='bg-[#11A5BD]! text-[#FFFFFF] text-[12px]'
-                    endIcon={<AddCircleOutlineIcon className='text-[20px]!' />}
-                    sx={{ fontFamily: fontFamily.primary }}
+        <>
+            <Box className="bg-[#d1e8ec] mt-4 rounded-3xl p-6">
+                <Box>
+                    <Typography errorText={get(errorMessage, 'message')} />
+                </Box>
+                <Box className="w-full flex justify-between text-right mb-4 items-center">
+                    <Typography className='text-[#11A5BD] text-[18px]!' sx={{ fontFamily: fontFamily.primary }}>User details</Typography>
+                    <Button
+                        label='Add User'
+                        type="submit"
+                        isLoading={false}
+                        disabled={false}
+                        onClick={handleOpen}
+                        className='bg-[#11A5BD]! text-[#FFFFFF] text-[12px]'
+                        endIcon={<AddCircleOutlineIcon className='text-[20px]!' />}
+                        sx={{ fontFamily: fontFamily.primary }}
+                    />
+                </Box>
+                <Table
+                    context={'all-users-table'}
+                    columns={columns}
+                    tableData={listData}
+                    isLoading={isLoading}
+                    rowsPerPage={20}
+                    onPageChange={handlePageChange}
                 />
             </Box>
-            <Table
-                context={'all-users-table'}
-                columns={columns}
-                tableData={listData}
-                isLoading={isLoading}
-                rowsPerPage={20}
-                onPageChange={handlePageChange}
-            />
-        </Box>
+            <AddUser />
+        </>
     )
 }
 

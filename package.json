@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "proxy": "http://localhost:8000,http://127.0.0.1:8000"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

@@ -142,6 +142,7 @@ const Applications = () => {
     <Box className="bg-[#d1e8ec] mt-4 rounded-3xl p-6 h-[calc(100vh-120px)]!">
       <Box className="w-full flex justify-between text-left items-center">
         <Table
+          onPageChange={() => { }}
           context={'all-users-table'}
           columns={columns}
           tableData={[]}

@@ -17,7 +17,8 @@ import AlertDialog from './Alert';
 import FileUpload from "./FileUpload";
 import SwitchButton from './Switch';
 import AutocompleteField from './AutoComplete';
+import DateField from "./FormField/DateField";
 
 export {
-    InputField, Button, AuthWrapper, Drawer, Tabs, Table, WrapperDialog, AppBarContainer, Tooltip, AreaChart, WrappedTypography, Loader, Alert, FileUploadButton, ImageIcon, AlertDialog, FileUpload, SwitchButton, AutocompleteField
+    InputField, Button, AuthWrapper, Drawer, Tabs, Table, WrapperDialog, AppBarContainer, Tooltip, AreaChart, WrappedTypography, Loader, Alert, FileUploadButton, ImageIcon, AlertDialog, FileUpload, SwitchButton, AutocompleteField, DateField
 };

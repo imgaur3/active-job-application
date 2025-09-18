@@ -1,8 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { dialogClose } from '../../redux-modules/dialog/Actions';
-import { WrapperDialog } from 'src/components/Dialog';
-
+import { WrapperDialog } from '../../components/Dialog';
 const Notification = () => {
     const dispatch = useDispatch();
     const handleClose = () => {

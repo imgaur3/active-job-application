@@ -52,6 +52,7 @@ const SignIn = () => {
       navigate('/dashboard');
       dispatch(dialogClose(''));
     }
+    dispatch(AuthActions.emptyState());
   }, [auth.user, navigate, dispatch]);
 
   return (
